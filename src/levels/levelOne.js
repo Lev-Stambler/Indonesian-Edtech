@@ -10,6 +10,7 @@ export default [
     opts: { 
       text: "asasdj djshdjs hdjsh d",
       Character: MainPlayer,
+      backgroundSrc: "generic.jpg"
     }
   },
   {

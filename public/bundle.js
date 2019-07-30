@@ -318,15 +318,15 @@ var app = (function () {
     const file = "src/components/players/MainPlayer.svelte";
 
     function create_fragment(ctx) {
-    	var h1, t1, t2;
+    	var img;
 
     	return {
     		c: function create() {
-    			h1 = element("h1");
-    			h1.textContent = "asasas";
-    			t1 = space();
-    			t2 = text(ctx.charName);
-    			add_location(h1, file, 3, 0, 57);
+    			img = element("img");
+    			attr(img, "src", "static/chars/indie.png");
+    			attr(img, "alt", ctx.charName);
+    			attr(img, "class", "svelte-c4ky2f");
+    			add_location(img, file, 9, 0, 133);
     		},
 
     		l: function claim(nodes) {
@@ -334,9 +334,7 @@ var app = (function () {
     		},
 
     		m: function mount(target, anchor) {
-    			insert(target, h1, anchor);
-    			insert(target, t1, anchor);
-    			insert(target, t2, anchor);
+    			insert(target, img, anchor);
     		},
 
     		p: noop,
@@ -345,16 +343,14 @@ var app = (function () {
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach(h1);
-    				detach(t1);
-    				detach(t2);
+    				detach(img);
     			}
     		}
     	};
     }
 
     function instance($$self, $$props, $$invalidate) {
-    	const charName = "Jimbolaya";
+    	const charName = "Indiana Jones";
 
     	return { charName };
     }
@@ -484,23 +480,21 @@ var app = (function () {
     const file$2 = "src/templates/PersonLeft.svelte";
 
     function create_fragment$2(ctx) {
-    	var updating_charName, t0, t1, t2, t3, t4, div0, t5, div1, current;
+    	var img, img_src_value, t0, div0, updating_charName, t1, div1, current;
 
-    	function character0_charName_binding(value) {
-    		ctx.character0_charName_binding.call(null, value);
+    	function character_charName_binding(value) {
+    		ctx.character_charName_binding.call(null, value);
     		updating_charName = true;
     		add_flush_callback(() => updating_charName = false);
     	}
 
-    	let character0_props = {};
+    	let character_props = {};
     	if (ctx.charName !== void 0) {
-    		character0_props.charName = ctx.charName;
+    		character_props.charName = ctx.charName;
     	}
-    	var character0 = new ctx.Character({ props: character0_props, $$inline: true });
+    	var character = new ctx.Character({ props: character_props, $$inline: true });
 
-    	binding_callbacks.push(() => bind(character0, 'charName', character0_charName_binding));
-
-    	var character1 = new ctx.Character({ $$inline: true });
+    	binding_callbacks.push(() => bind(character, 'charName', character_charName_binding));
 
     	var speechbox = new Speechbox({
     		props: { speaker: ctx.charName, text: ctx.text },
@@ -509,21 +503,21 @@ var app = (function () {
 
     	return {
     		c: function create() {
-    			character0.$$.fragment.c();
+    			img = element("img");
     			t0 = space();
-    			t1 = text(ctx.text);
-    			t2 = space();
-    			t3 = text(ctx.charName);
-    			t4 = space();
     			div0 = element("div");
-    			character1.$$.fragment.c();
-    			t5 = space();
+    			character.$$.fragment.c();
+    			t1 = space();
     			div1 = element("div");
     			speechbox.$$.fragment.c();
-    			attr(div0, "class", "charactercontainer");
-    			add_location(div0, file$2, 19, 0, 330);
-    			attr(div1, "class", "speechcontainer svelte-rcoszw");
-    			add_location(div1, file$2, 22, 0, 386);
+    			attr(img, "src", img_src_value = "static/bckgrnds/" + ctx.backgroundSrc);
+    			attr(img, "alt", "");
+    			attr(img, "class", "background svelte-h1f1i");
+    			add_location(img, file$2, 33, 0, 568);
+    			attr(div0, "class", "charactercontainer svelte-h1f1i");
+    			add_location(div0, file$2, 34, 0, 638);
+    			attr(div1, "class", "speechcontainer svelte-h1f1i");
+    			add_location(div1, file$2, 37, 0, 708);
     		},
 
     		l: function claim(nodes) {
@@ -531,34 +525,26 @@ var app = (function () {
     		},
 
     		m: function mount(target, anchor) {
-    			mount_component(character0, target, anchor);
+    			insert(target, img, anchor);
     			insert(target, t0, anchor);
-    			insert(target, t1, anchor);
-    			insert(target, t2, anchor);
-    			insert(target, t3, anchor);
-    			insert(target, t4, anchor);
     			insert(target, div0, anchor);
-    			mount_component(character1, div0, null);
-    			insert(target, t5, anchor);
+    			mount_component(character, div0, null);
+    			insert(target, t1, anchor);
     			insert(target, div1, anchor);
     			mount_component(speechbox, div1, null);
     			current = true;
     		},
 
     		p: function update(changed, ctx) {
-    			var character0_changes = {};
+    			if ((!current || changed.backgroundSrc) && img_src_value !== (img_src_value = "static/bckgrnds/" + ctx.backgroundSrc)) {
+    				attr(img, "src", img_src_value);
+    			}
+
+    			var character_changes = {};
     			if (!updating_charName && changed.charName) {
-    				character0_changes.charName = ctx.charName;
+    				character_changes.charName = ctx.charName;
     			}
-    			character0.$set(character0_changes);
-
-    			if (!current || changed.text) {
-    				set_data(t1, ctx.text);
-    			}
-
-    			if (!current || changed.charName) {
-    				set_data(t3, ctx.charName);
-    			}
+    			character.$set(character_changes);
 
     			var speechbox_changes = {};
     			if (changed.charName) speechbox_changes.speaker = ctx.charName;
@@ -568,9 +554,7 @@ var app = (function () {
 
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(character0.$$.fragment, local);
-
-    			transition_in(character1.$$.fragment, local);
+    			transition_in(character.$$.fragment, local);
 
     			transition_in(speechbox.$$.fragment, local);
 
@@ -578,28 +562,22 @@ var app = (function () {
     		},
 
     		o: function outro(local) {
-    			transition_out(character0.$$.fragment, local);
-    			transition_out(character1.$$.fragment, local);
+    			transition_out(character.$$.fragment, local);
     			transition_out(speechbox.$$.fragment, local);
     			current = false;
     		},
 
     		d: function destroy(detaching) {
-    			destroy_component(character0, detaching);
-
     			if (detaching) {
+    				detach(img);
     				detach(t0);
-    				detach(t1);
-    				detach(t2);
-    				detach(t3);
-    				detach(t4);
     				detach(div0);
     			}
 
-    			destroy_component(character1);
+    			destroy_component(character);
 
     			if (detaching) {
-    				detach(t5);
+    				detach(t1);
     				detach(div1);
     			}
 
@@ -609,14 +587,14 @@ var app = (function () {
     }
 
     function instance$2($$self, $$props, $$invalidate) {
-    	let { text, Character, charName } = $$props;
+    	let { text, Character, charName, backgroundSrc } = $$props;
 
-    	const writable_props = ['text', 'Character', 'charName'];
+    	const writable_props = ['text', 'Character', 'charName', 'backgroundSrc'];
     	Object.keys($$props).forEach(key => {
     		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<PersonLeft> was created with unknown prop '${key}'`);
     	});
 
-    	function character0_charName_binding(value) {
+    	function character_charName_binding(value) {
     		charName = value;
     		$$invalidate('charName', charName);
     	}
@@ -625,20 +603,22 @@ var app = (function () {
     		if ('text' in $$props) $$invalidate('text', text = $$props.text);
     		if ('Character' in $$props) $$invalidate('Character', Character = $$props.Character);
     		if ('charName' in $$props) $$invalidate('charName', charName = $$props.charName);
+    		if ('backgroundSrc' in $$props) $$invalidate('backgroundSrc', backgroundSrc = $$props.backgroundSrc);
     	};
 
     	return {
     		text,
     		Character,
     		charName,
-    		character0_charName_binding
+    		backgroundSrc,
+    		character_charName_binding
     	};
     }
 
     class PersonLeft extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$2, create_fragment$2, safe_not_equal, ["text", "Character", "charName"]);
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, ["text", "Character", "charName", "backgroundSrc"]);
 
     		const { ctx } = this.$$;
     		const props = options.props || {};
@@ -650,6 +630,9 @@ var app = (function () {
     		}
     		if (ctx.charName === undefined && !('charName' in props)) {
     			console.warn("<PersonLeft> was created without expected prop 'charName'");
+    		}
+    		if (ctx.backgroundSrc === undefined && !('backgroundSrc' in props)) {
+    			console.warn("<PersonLeft> was created without expected prop 'backgroundSrc'");
     		}
     	}
 
@@ -674,6 +657,14 @@ var app = (function () {
     	}
 
     	set charName(value) {
+    		throw new Error("<PersonLeft>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get backgroundSrc() {
+    		throw new Error("<PersonLeft>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set backgroundSrc(value) {
     		throw new Error("<PersonLeft>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -711,6 +702,7 @@ var app = (function () {
         opts: { 
           text: "asasdj djshdjs hdjsh d",
           Character: MainPlayer,
+          backgroundSrc: "generic.jpg"
         }
       },
       {
