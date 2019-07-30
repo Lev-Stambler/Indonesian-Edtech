@@ -1,0 +1,14 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "../src/components/speech/Speechbox.svelte",
+    "../src/templates/PersonLeft.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\n  export let text\n  export let speaker\n</script>\n<style>\n.box {\n  background: white;\n  border: black 2px solid;\n  display: inline-block;  \n  width: 100%;\n  height: 100%;\n}\n.speaker {\n  font-weight: 500;\n  padding-left: 1.2rem;\n  padding-top: 1rem;\n}\np {\n  padding: 1rem;\n  padding-top: 0.3rem;\n}\n</style>\n<div class=\"box\">\n  <div class=\"speaker\">{speaker}</div>\n  <p>\n    {text}\n  </p>\n</div>",
+    "<script>\n  import Speechbox from \"../components/speech/Speechbox.svelte\"\n  export let text\n  export let Character\n  export let charName\n</script>\n<style>\n  .speechcontainer {\n    position: absolute;\n    bottom: 5%;\n    top: 70%;\n    left: 10%;\n    right: 10%;\n  }\n</style>\n<Character bind:charName={charName}/>\n{text}\n{charName}\n\n<div class=\"charactercontainer\">\n  <Character />\n</div>\n<div class=\"speechcontainer\">\n  <Speechbox speaker={charName} text={text} />\n</div>"
+  ],
+  "names": [],
+  "mappings": "AAKA,IAAI,eAAC,CAAC,AACJ,UAAU,CAAE,KAAK,CACjB,MAAM,CAAE,KAAK,CAAC,GAAG,CAAC,KAAK,CACvB,OAAO,CAAE,YAAY,CACrB,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,AACd,CAAC,AACD,QAAQ,eAAC,CAAC,AACR,WAAW,CAAE,GAAG,CAChB,YAAY,CAAE,MAAM,CACpB,WAAW,CAAE,IAAI,AACnB,CAAC,AACD,CAAC,eAAC,CAAC,AACD,OAAO,CAAE,IAAI,CACb,WAAW,CAAE,MAAM,AACrB,CAAC;ACbC,gBAAgB,cAAC,CAAC,AAChB,QAAQ,CAAE,QAAQ,CAClB,MAAM,CAAE,EAAE,CACV,GAAG,CAAE,GAAG,CACR,IAAI,CAAE,GAAG,CACT,KAAK,CAAE,GAAG,AACZ,CAAC"
+}
