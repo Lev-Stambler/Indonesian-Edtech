@@ -1,1 +1,83 @@
-<h1>AGAHGHAGH</h1>
+<script>
+
+  var textareas = document.getElementsByTagName('textarea');
+  var count = textareas.length;
+
+  function allowTab(e) {
+    if(e.keyCode==9 || e.which==9){
+      e.preventDefault();
+      var s = this.selectionStart;
+      this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
+      this.selectionEnd = s+1; 
+    }
+  }
+
+  export let htmlRender = ""
+</script>
+<style>
+  .container {
+    padding: 1rem;
+    padding-top: 5rem;
+    width: 100%;
+    height: 100%;
+    background: rgb(59, 59, 59);
+  }
+
+  .editor-container {
+    padding: 1rem;
+    display: flex;
+    width: 100%;
+    height: 80vh;
+    overflow: auto;
+  }
+  .elem {
+    width: 47%;
+    margin: 0.5rem;
+  }
+  .elem.renderSpot {
+    background: white;
+    border: 1px solid black;
+    padding: 1rem;
+  }
+  .top-container {
+    display: flex;
+    padding-left: 2rem;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .top-container div {
+    width: 50%;
+  }
+  textarea {
+  background: url(http://i.imgur.com/2cOaJ.png);
+  background-attachment: local;
+  background-repeat: no-repeat;
+  padding-left: 35px;
+  padding-top: 10px;
+  border-color: #ccc;
+
+  font-size: 13px;
+  line-height: 16px;
+}
+
+  .textarea-wrapper {
+    display: inline-block;
+    background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
+    background-size: 100% 32px;
+    background-position: left 10px;
+  }
+</style>
+<div class="container">
+  <div class="top-container" style="display: flex; color: white; width: 100%;">
+    <div>Edit your code:</div>
+    <div>See your code</div>
+  </div>
+  <div class="editor-container">
+    <div class="editSpot elem textarea-wrapper">
+      <textarea name="" id="" cols="400" rows="10" style="width: 100%; height: 100%;" bind:value={htmlRender} on:keydown="{ allowTab }"></textarea>
+    </div>
+    <div class="renderSpot elem">
+      {@html htmlRender}
+    </div>
+  </div>
+</div>

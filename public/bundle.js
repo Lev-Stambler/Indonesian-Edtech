@@ -70,6 +70,9 @@ var app = (function () {
         if (text.data !== data)
             text.data = data;
     }
+    function set_style(node, key, value) {
+        node.style.setProperty(key, value);
+    }
 
     let current_component;
     function set_current_component(component) {
@@ -694,13 +697,53 @@ var app = (function () {
     const file$3 = "src/templates/CodeRender.svelte";
 
     function create_fragment$3(ctx) {
-    	var h1;
+    	var div6, div2, div0, t1, div1, t3, div5, div3, textarea, t4, div4, dispose;
 
     	return {
     		c: function create() {
-    			h1 = element("h1");
-    			h1.textContent = "AGAHGHAGH";
-    			add_location(h1, file$3, 0, 0, 0);
+    			div6 = element("div");
+    			div2 = element("div");
+    			div0 = element("div");
+    			div0.textContent = "Edit your code:";
+    			t1 = space();
+    			div1 = element("div");
+    			div1.textContent = "See your code";
+    			t3 = space();
+    			div5 = element("div");
+    			div3 = element("div");
+    			textarea = element("textarea");
+    			t4 = space();
+    			div4 = element("div");
+    			attr(div0, "class", "svelte-wisvwj");
+    			add_location(div0, file$3, 71, 4, 1524);
+    			attr(div1, "class", "svelte-wisvwj");
+    			add_location(div1, file$3, 72, 4, 1555);
+    			attr(div2, "class", "top-container svelte-wisvwj");
+    			set_style(div2, "display", "flex");
+    			set_style(div2, "color", "white");
+    			set_style(div2, "width", "100%");
+    			add_location(div2, file$3, 70, 2, 1442);
+    			attr(textarea, "name", "");
+    			attr(textarea, "id", "");
+    			attr(textarea, "cols", "400");
+    			attr(textarea, "rows", "10");
+    			set_style(textarea, "width", "100%");
+    			set_style(textarea, "height", "100%");
+    			attr(textarea, "class", "svelte-wisvwj");
+    			add_location(textarea, file$3, 76, 6, 1677);
+    			attr(div3, "class", "editSpot elem textarea-wrapper svelte-wisvwj");
+    			add_location(div3, file$3, 75, 4, 1626);
+    			attr(div4, "class", "renderSpot elem svelte-wisvwj");
+    			add_location(div4, file$3, 78, 4, 1834);
+    			attr(div5, "class", "editor-container svelte-wisvwj");
+    			add_location(div5, file$3, 74, 2, 1591);
+    			attr(div6, "class", "container svelte-wisvwj");
+    			add_location(div6, file$3, 69, 0, 1416);
+
+    			dispose = [
+    				listen(textarea, "input", ctx.textarea_input_handler),
+    				listen(textarea, "keydown", allowTab)
+    			];
     		},
 
     		l: function claim(nodes) {
@@ -708,25 +751,88 @@ var app = (function () {
     		},
 
     		m: function mount(target, anchor) {
-    			insert(target, h1, anchor);
+    			insert(target, div6, anchor);
+    			append(div6, div2);
+    			append(div2, div0);
+    			append(div2, t1);
+    			append(div2, div1);
+    			append(div6, t3);
+    			append(div6, div5);
+    			append(div5, div3);
+    			append(div3, textarea);
+
+    			textarea.value = ctx.htmlRender;
+
+    			append(div5, t4);
+    			append(div5, div4);
+    			div4.innerHTML = ctx.htmlRender;
     		},
 
-    		p: noop,
+    		p: function update(changed, ctx) {
+    			if (changed.htmlRender) textarea.value = ctx.htmlRender;
+
+    			if (changed.htmlRender) {
+    				div4.innerHTML = ctx.htmlRender;
+    			}
+    		},
+
     		i: noop,
     		o: noop,
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach(h1);
+    				detach(div6);
     			}
+
+    			run_all(dispose);
     		}
     	};
+    }
+
+    function allowTab(e) {
+      if(e.keyCode==9 || e.which==9){
+        e.preventDefault();
+        var s = this.selectionStart;
+        this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
+        this.selectionEnd = s+1; 
+      }
+    }
+
+    function instance$3($$self, $$props, $$invalidate) {
+    	var textareas = document.getElementsByTagName('textarea');
+      var count = textareas.length;
+
+      let { htmlRender = "" } = $$props;
+
+    	const writable_props = ['htmlRender'];
+    	Object.keys($$props).forEach(key => {
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<CodeRender> was created with unknown prop '${key}'`);
+    	});
+
+    	function textarea_input_handler() {
+    		htmlRender = this.value;
+    		$$invalidate('htmlRender', htmlRender);
+    	}
+
+    	$$self.$set = $$props => {
+    		if ('htmlRender' in $$props) $$invalidate('htmlRender', htmlRender = $$props.htmlRender);
+    	};
+
+    	return { htmlRender, textarea_input_handler };
     }
 
     class CodeRender extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, null, create_fragment$3, safe_not_equal, []);
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, ["htmlRender"]);
+    	}
+
+    	get htmlRender() {
+    		throw new Error("<CodeRender>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set htmlRender(value) {
+    		throw new Error("<CodeRender>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
@@ -806,7 +912,7 @@ var app = (function () {
 
     const file$4 = "src/App.svelte";
 
-    // (58:0) {#if mainVis}
+    // (68:0) {#if mainVis}
     function create_if_block(ctx) {
     	var div, current;
 
@@ -828,7 +934,7 @@ var app = (function () {
     			div = element("div");
     			currentcomponent.$$.fragment.c();
     			attr(div, "class", "main-content svelte-ynh0am");
-    			add_location(div, file$4, 58, 0, 1614);
+    			add_location(div, file$4, 68, 0, 1936);
     		},
 
     		m: function mount(target, anchor) {
@@ -882,10 +988,10 @@ var app = (function () {
     			t3 = space();
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
-    			add_location(button0, file$4, 54, 1, 1455);
-    			add_location(button1, file$4, 55, 1, 1527);
+    			add_location(button0, file$4, 64, 1, 1777);
+    			add_location(button1, file$4, 65, 1, 1849);
     			attr(div, "class", "direction-selection svelte-ynh0am");
-    			add_location(div, file$4, 53, 0, 1420);
+    			add_location(div, file$4, 63, 0, 1742);
 
     			dispose = [
     				listen(button0, "click", ctx.click_handler),
@@ -956,7 +1062,7 @@ var app = (function () {
     	};
     }
 
-    function instance$3($$self, $$props, $$invalidate) {
+    function instance$4($$self, $$props, $$invalidate) {
     	
     	let { name } = $$props;
     	let mainVis = true;
@@ -965,9 +1071,18 @@ var app = (function () {
     	let { CurrentScreen, CurrentComponent } = $$props;
     	const _CurrentScreen = writable();
     	const _CurrentComponent = writable();
-    	setScreen();
+    	setCurrentOnLoad();
     	_CurrentScreen.subscribe(val => { $$invalidate('CurrentScreen', CurrentScreen = val); });
     	_CurrentComponent.subscribe(val => { $$invalidate('CurrentComponent', CurrentComponent = val); });
+    	function setCurrentOnLoad() {
+    		const url = window.location.href;
+    		if (url.indexOf("#") !== -1) {
+    			const levelMap = url.split("#")[1];
+    			currentLevel = levelMap.split('/')[0] || 0;
+    			currentSublevel = levelMap.split('/')[1] || 0;
+    		}
+    		setScreen();
+    	}
     	function incrementStage() {
     		currentSublevel++;		if (currentSublevel >= levels[currentLevel].length && currentLevel + 1 < levels.length) {
     			currentSublevel = 0;
@@ -984,6 +1099,7 @@ var app = (function () {
     	}
 
     	function setScreen() {
+    		window.location.hash = currentLevel + "/" + currentSublevel;
     		$$invalidate('mainVis', mainVis = false);
     		_CurrentScreen.set(levels[currentLevel][currentSublevel]);
     		_CurrentComponent.set(levels[currentLevel][currentSublevel].template);
@@ -1024,7 +1140,7 @@ var app = (function () {
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$3, create_fragment$4, safe_not_equal, ["name", "CurrentScreen", "CurrentComponent"]);
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, ["name", "CurrentScreen", "CurrentComponent"]);
 
     		const { ctx } = this.$$;
     		const props = options.props || {};

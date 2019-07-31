@@ -8,9 +8,18 @@
 	export let CurrentScreen, CurrentComponent
 	const _CurrentScreen = writable()
 	const _CurrentComponent = writable()
-	setScreen()
+	setCurrentOnLoad()
 	_CurrentScreen.subscribe(val => { CurrentScreen = val })
 	_CurrentComponent.subscribe(val => { CurrentComponent = val })
+	function setCurrentOnLoad() {
+		const url = window.location.href
+		if (url.indexOf("#") !== -1) {
+			const levelMap = url.split("#")[1]
+			currentLevel = levelMap.split('/')[0] || 0
+			currentSublevel = levelMap.split('/')[1] || 0
+		}
+		setScreen()
+	}
 	function incrementStage() {
 		currentSublevel++
 		if (currentSublevel >= levels[currentLevel].length && currentLevel + 1 < levels.length) {
@@ -32,6 +41,7 @@
 	}
 
 	function setScreen() {
+		window.location.hash = currentLevel + "/" + currentSublevel
 		mainVis = false
 		_CurrentScreen.set(levels[currentLevel][currentSublevel])
 		_CurrentComponent.set(levels[currentLevel][currentSublevel].template)
