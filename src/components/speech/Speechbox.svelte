@@ -18,11 +18,18 @@
 p {
   padding: 1rem;
   padding-top: 0.3rem;
+  /* word-break: break-all; */
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 </style>
 <div class="box">
   <div class="speaker">{speaker}</div>
   <p>
-    {text}
+    {#each text.replace(/[\n\r]/g, '').split(' ') as word, index}
+      <div data-aos="flip-left" style="display: inline-block;" data-aos-delay="{index * 50}">
+        { word.trim() }&nbsp;
+      </div>
+    {/each}
   </p>
 </div>

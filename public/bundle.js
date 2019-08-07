@@ -40,6 +40,12 @@ var app = (function () {
     function detach(node) {
         node.parentNode.removeChild(node);
     }
+    function destroy_each(iterations, detaching) {
+        for (let i = 0; i < iterations.length; i += 1) {
+            if (iterations[i])
+                iterations[i].d(detaching);
+        }
+    }
     function element(name) {
         return document.createElement(name);
     }
@@ -397,8 +403,58 @@ var app = (function () {
 
     const file$1 = "src/components/speech/Speechbox.svelte";
 
+    function get_each_context(ctx, list, i) {
+    	const child_ctx = Object.create(ctx);
+    	child_ctx.word = list[i];
+    	child_ctx.index = i;
+    	return child_ctx;
+    }
+
+    // (29:4) {#each text.replace(/[\n\r]/g, '').split(' ') as word, index}
+    function create_each_block(ctx) {
+    	var div, t0_value = ctx.word.trim(), t0, t1;
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			t0 = text(t0_value);
+    			t1 = text(" \n      ");
+    			div.dataset.aos = "flip-left";
+    			set_style(div, "display", "inline-block");
+    			div.dataset.aosDelay = ctx.index * 50;
+    			add_location(div, file$1, 29, 6, 532);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+    			append(div, t0);
+    			append(div, t1);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if ((changed.text) && t0_value !== (t0_value = ctx.word.trim())) {
+    				set_data(t0, t0_value);
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+    		}
+    	};
+    }
+
     function create_fragment$1(ctx) {
-    	var div1, div0, t0, t1, p, t2;
+    	var div1, div0, t0, t1, p;
+
+    	var each_value = ctx.text.replace(/[\n\r]/g, '').split(' ');
+
+    	var each_blocks = [];
+
+    	for (var i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
 
     	return {
     		c: function create() {
@@ -407,13 +463,16 @@ var app = (function () {
     			t0 = text(ctx.speaker);
     			t1 = space();
     			p = element("p");
-    			t2 = text(ctx.text);
-    			attr(div0, "class", "speaker svelte-1rsb9rv");
-    			add_location(div0, file$1, 23, 2, 334);
-    			attr(p, "class", "svelte-1rsb9rv");
-    			add_location(p, file$1, 24, 2, 373);
-    			attr(div1, "class", "box svelte-1rsb9rv");
-    			add_location(div1, file$1, 22, 0, 314);
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+    			attr(div0, "class", "speaker svelte-m7zcdj");
+    			add_location(div0, file$1, 26, 2, 417);
+    			attr(p, "class", "svelte-m7zcdj");
+    			add_location(p, file$1, 27, 2, 456);
+    			attr(div1, "class", "box svelte-m7zcdj");
+    			add_location(div1, file$1, 25, 0, 397);
     		},
 
     		l: function claim(nodes) {
@@ -426,7 +485,10 @@ var app = (function () {
     			append(div0, t0);
     			append(div1, t1);
     			append(div1, p);
-    			append(p, t2);
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(p, null);
+    			}
     		},
 
     		p: function update(changed, ctx) {
@@ -435,7 +497,24 @@ var app = (function () {
     			}
 
     			if (changed.text) {
-    				set_data(t2, ctx.text);
+    				each_value = ctx.text.replace(/[\n\r]/g, '').split(' ');
+
+    				for (var i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(changed, child_ctx);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(p, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+    				each_blocks.length = each_value.length;
     			}
     		},
 
@@ -446,6 +525,8 @@ var app = (function () {
     			if (detaching) {
     				detach(div1);
     			}
+
+    			destroy_each(each_blocks, detaching);
     		}
     	};
     }
@@ -715,14 +796,14 @@ var app = (function () {
     			t4 = space();
     			div4 = element("div");
     			attr(div0, "class", "svelte-wisvwj");
-    			add_location(div0, file$3, 71, 4, 1524);
+    			add_location(div0, file$3, 81, 4, 1802);
     			attr(div1, "class", "svelte-wisvwj");
-    			add_location(div1, file$3, 72, 4, 1555);
+    			add_location(div1, file$3, 82, 4, 1833);
     			attr(div2, "class", "top-container svelte-wisvwj");
     			set_style(div2, "display", "flex");
     			set_style(div2, "color", "white");
     			set_style(div2, "width", "100%");
-    			add_location(div2, file$3, 70, 2, 1442);
+    			add_location(div2, file$3, 80, 2, 1720);
     			attr(textarea, "name", "");
     			attr(textarea, "id", "");
     			attr(textarea, "cols", "400");
@@ -730,15 +811,15 @@ var app = (function () {
     			set_style(textarea, "width", "100%");
     			set_style(textarea, "height", "100%");
     			attr(textarea, "class", "svelte-wisvwj");
-    			add_location(textarea, file$3, 76, 6, 1677);
+    			add_location(textarea, file$3, 86, 6, 1955);
     			attr(div3, "class", "editSpot elem textarea-wrapper svelte-wisvwj");
-    			add_location(div3, file$3, 75, 4, 1626);
+    			add_location(div3, file$3, 85, 4, 1904);
     			attr(div4, "class", "renderSpot elem svelte-wisvwj");
-    			add_location(div4, file$3, 78, 4, 1834);
+    			add_location(div4, file$3, 88, 4, 2112);
     			attr(div5, "class", "editor-container svelte-wisvwj");
-    			add_location(div5, file$3, 74, 2, 1591);
+    			add_location(div5, file$3, 84, 2, 1869);
     			attr(div6, "class", "container svelte-wisvwj");
-    			add_location(div6, file$3, 69, 0, 1416);
+    			add_location(div6, file$3, 79, 0, 1694);
 
     			dispose = [
     				listen(textarea, "input", ctx.textarea_input_handler),
@@ -792,15 +873,25 @@ var app = (function () {
     function allowTab(e) {
       if(e.keyCode==9 || e.which==9){
         e.preventDefault();
-        var s = this.selectionStart;
+        let s = this.selectionStart;
         this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
         this.selectionEnd = s+1; 
       }
     }
 
     function instance$3($$self, $$props, $$invalidate) {
-    	var textareas = document.getElementsByTagName('textarea');
-      var count = textareas.length;
+    	// localStorage.setItem('user', JSON.stringify(user));
+
+    // Then to retrieve it from the store and convert to an object again:
+
+    // let user = JSON.parse(localStorage.getItem('user'));
+
+    // If we need to delete all entries of the store we can simply do:
+
+    // localStorage.clear();
+
+      let textareas = document.getElementsByTagName('textarea');
+      let count = textareas.length;
 
       let { htmlRender = "" } = $$props;
 
@@ -842,8 +933,18 @@ var app = (function () {
       {
         template: PersonLeft,
         opts: { 
-          text: "asasdj djshdjs hdjsh d",
+          text: `Hi! My name is Diah, and this is my hometown of Jakarta! 
+Jakarta is the largest city in Indonesia, and also its capital! Over 10 million people live here!
+There are so many people who come to here for opportunities in business and education!`,
           Character: MainPlayer,
+          backgroundSrc: "generic.jpg"
+        }
+      },
+      {
+        template: PersonLeft,
+        opts: {
+          Character: MainPlayer,
+          text: `I am on a mission to explore other parts of my beautiful country. Why don’t you come along?`,
           backgroundSrc: "generic.jpg"
         }
       },

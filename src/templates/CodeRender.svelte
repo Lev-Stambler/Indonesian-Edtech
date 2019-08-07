@@ -1,12 +1,22 @@
 <script>
 
-  var textareas = document.getElementsByTagName('textarea');
-  var count = textareas.length;
+// localStorage.setItem('user', JSON.stringify(user));
+
+// Then to retrieve it from the store and convert to an object again:
+
+// let user = JSON.parse(localStorage.getItem('user'));
+
+// If we need to delete all entries of the store we can simply do:
+
+// localStorage.clear();
+
+  let textareas = document.getElementsByTagName('textarea');
+  let count = textareas.length;
 
   function allowTab(e) {
     if(e.keyCode==9 || e.which==9){
       e.preventDefault();
-      var s = this.selectionStart;
+      let s = this.selectionStart;
       this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
       this.selectionEnd = s+1; 
     }

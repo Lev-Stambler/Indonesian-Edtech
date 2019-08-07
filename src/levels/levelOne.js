@@ -8,8 +8,18 @@ export default [
   {
     template: PersonLeft,
     opts: { 
-      text: "asasdj djshdjs hdjsh d",
+      text: `Hi! My name is Diah, and this is my hometown of Jakarta! 
+Jakarta is the largest city in Indonesia, and also its capital! Over 10 million people live here!
+There are so many people who come to here for opportunities in business and education!`,
       Character: MainPlayer,
+      backgroundSrc: "generic.jpg"
+    }
+  },
+  {
+    template: PersonLeft,
+    opts: {
+      Character: MainPlayer,
+      text: `I am on a mission to explore other parts of my beautiful country. Why don’t you come along?`,
       backgroundSrc: "generic.jpg"
     }
   },
