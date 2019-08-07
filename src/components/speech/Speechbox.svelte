@@ -9,6 +9,7 @@
   display: inline-block;  
   width: 100%;
   height: 100%;
+  clip-path: polygon(3% 3%, 6% 0%, 94% 0%, 97% 3%, 100% 6%, 97% 97%, 94% 100%, 6% 100%, 3% 97%, 0% 94%, 0% 6%)
 }
 .speaker {
   font-weight: 500;

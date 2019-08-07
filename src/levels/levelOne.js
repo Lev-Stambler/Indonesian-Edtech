@@ -24,6 +24,22 @@ There are so many people who come to here for opportunities in business and educ
     }
   },
   {
+    template: PersonLeft,
+    opts: {
+      Character: MainPlayer,
+      text: `The first stop on our journey will be Magelang! This city is home to the Borobudur Temple, the world’s biggest Buddhist Temple!`,
+      backgroundSrc: "generic.jpg" //TODO change
+    }
+  },
+  {
+    template: PersonLeft,
+    opts: {
+      Character: MainPlayer,
+      text: `Let’s stop by and explore what it’s like!`,
+      backgroundSrc: "generic.jpg" //TODO change
+    }
+  },
+  {
     template: CodeRender
   }
 ]

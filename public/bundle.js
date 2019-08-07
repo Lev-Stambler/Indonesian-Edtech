@@ -410,7 +410,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (29:4) {#each text.replace(/[\n\r]/g, '').split(' ') as word, index}
+    // (30:4) {#each text.replace(/[\n\r]/g, '').split(' ') as word, index}
     function create_each_block(ctx) {
     	var div, t0_value = ctx.word.trim(), t0, t1;
 
@@ -422,7 +422,7 @@ var app = (function () {
     			div.dataset.aos = "flip-left";
     			set_style(div, "display", "inline-block");
     			div.dataset.aosDelay = ctx.index * 50;
-    			add_location(div, file$1, 29, 6, 532);
+    			add_location(div, file$1, 30, 6, 643);
     		},
 
     		m: function mount(target, anchor) {
@@ -467,12 +467,12 @@ var app = (function () {
     			for (var i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
-    			attr(div0, "class", "speaker svelte-m7zcdj");
-    			add_location(div0, file$1, 26, 2, 417);
-    			attr(p, "class", "svelte-m7zcdj");
-    			add_location(p, file$1, 27, 2, 456);
-    			attr(div1, "class", "box svelte-m7zcdj");
-    			add_location(div1, file$1, 25, 0, 397);
+    			attr(div0, "class", "speaker svelte-8lhq98");
+    			add_location(div0, file$1, 27, 2, 528);
+    			attr(p, "class", "svelte-8lhq98");
+    			add_location(p, file$1, 28, 2, 567);
+    			attr(div1, "class", "box svelte-8lhq98");
+    			add_location(div1, file$1, 26, 0, 508);
     		},
 
     		l: function claim(nodes) {
@@ -946,6 +946,22 @@ There are so many people who come to here for opportunities in business and educ
           Character: MainPlayer,
           text: `I am on a mission to explore other parts of my beautiful country. Why don’t you come along?`,
           backgroundSrc: "generic.jpg"
+        }
+      },
+      {
+        template: PersonLeft,
+        opts: {
+          Character: MainPlayer,
+          text: `The first stop on our journey will be Magelang! This city is home to the Borobudur Temple, the world’s biggest Buddhist Temple!`,
+          backgroundSrc: "generic.jpg" //TODO change
+        }
+      },
+      {
+        template: PersonLeft,
+        opts: {
+          Character: MainPlayer,
+          text: `Let’s stop by and explore what it’s like!`,
+          backgroundSrc: "generic.jpg" //TODO change
         }
       },
       {
