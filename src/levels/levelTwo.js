@@ -1,5 +1,6 @@
 import MainPlayer from "../components/players/MainPlayer.svelte"
 import PersonLeft from "../templates/PersonLeft.svelte"
+import CodeRender from "../templates/CodeRender.svelte"
 import Init from "../templates/Initial.svelte"
 
 console.log(PersonLeft)
@@ -7,13 +8,13 @@ console.log(PersonLeft)
 export default [
   { 
     template: Init,
-    opts: { subtext: 'Click next to start', header: 'Learn to code and explore Indonesia!' }
+    opts: { subtext: 'Click next to start level one', header: 'Now, the real work begins, let\'s learn some HTML' }
   },
   {
     template: PersonLeft,
     opts: { 
       text: `Hi! My name is Diah, and this is my hometown of Jakarta! 
-Jakarta is the largest city in Indonesia, and also its capital! Over 10 million people live here! 
+Jakarta is the largest city in Indonesia, and also its capital! Over 10 million people live here!
 There are so many people who come to here for opportunities in business and education!`,
       Character: MainPlayer,
       backgroundSrc: "CityNight.jpg"
@@ -44,5 +45,8 @@ There are so many people who come to here for opportunities in business and educ
       backgroundSrc: "BorbMap.png",
       top: true
     }
+  },
+  {
+    template: CodeRender
   }
 ]

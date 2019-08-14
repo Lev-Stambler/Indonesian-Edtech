@@ -1,5 +1,5 @@
 <script>
-  export const charName = "Indiana Jones"
+  export const charName = "Diah"
 </script>
 <style>
     img {
@@ -7,4 +7,4 @@
       height: 100%;
     }
 </style>
-<img src="static/chars/indie.png" alt="{charName}">
+<img src="static/chars/Di.png" alt="{charName}">

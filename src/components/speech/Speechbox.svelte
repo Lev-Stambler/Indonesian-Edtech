@@ -5,11 +5,11 @@
 <style>
 .box {
   background: white;
-  border: black 2px solid;
+  border: black 3px solid;
   display: inline-block;  
   width: 100%;
   height: 100%;
-  clip-path: polygon(3% 3%, 6% 0%, 94% 0%, 97% 3%, 100% 6%, 97% 97%, 94% 100%, 6% 100%, 3% 97%, 0% 94%, 0% 6%)
+  clip-path: polygon(2% 2%, 6% 0%, 94% 0%, 98% 2%, 100% 6%, 100% 94%, 98% 98%, 94% 100%, 6% 100%, 2% 98%, 0% 94%, 0% 6%)
 }
 .speaker {
   font-weight: 500;

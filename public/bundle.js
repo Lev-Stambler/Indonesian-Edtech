@@ -352,10 +352,10 @@ var app = (function () {
     	return {
     		c: function create() {
     			img = element("img");
-    			attr(img, "src", "static/chars/indie.png");
+    			attr(img, "src", "static/chars/Di.png");
     			attr(img, "alt", ctx.charName);
     			attr(img, "class", "svelte-c4ky2f");
-    			add_location(img, file, 9, 0, 133);
+    			add_location(img, file, 9, 0, 124);
     		},
 
     		l: function claim(nodes) {
@@ -379,7 +379,7 @@ var app = (function () {
     }
 
     function instance($$self, $$props, $$invalidate) {
-    	const charName = "Indiana Jones";
+    	const charName = "Diah";
 
     	return { charName };
     }
@@ -422,7 +422,7 @@ var app = (function () {
     			div.dataset.aos = "flip-left";
     			set_style(div, "display", "inline-block");
     			div.dataset.aosDelay = ctx.index * 50;
-    			add_location(div, file$1, 30, 6, 643);
+    			add_location(div, file$1, 30, 6, 653);
     		},
 
     		m: function mount(target, anchor) {
@@ -467,12 +467,12 @@ var app = (function () {
     			for (var i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
-    			attr(div0, "class", "speaker svelte-8lhq98");
-    			add_location(div0, file$1, 27, 2, 528);
-    			attr(p, "class", "svelte-8lhq98");
-    			add_location(p, file$1, 28, 2, 567);
-    			attr(div1, "class", "box svelte-8lhq98");
-    			add_location(div1, file$1, 26, 0, 508);
+    			attr(div0, "class", "speaker svelte-1et78d9");
+    			add_location(div0, file$1, 27, 2, 538);
+    			attr(p, "class", "svelte-1et78d9");
+    			add_location(p, file$1, 28, 2, 577);
+    			attr(div1, "class", "box svelte-1et78d9");
+    			add_location(div1, file$1, 26, 0, 518);
     		},
 
     		l: function claim(nodes) {
@@ -584,7 +584,7 @@ var app = (function () {
     const file$2 = "src/templates/PersonLeft.svelte";
 
     function create_fragment$2(ctx) {
-    	var img, img_src_value, t0, div0, updating_charName, t1, div1, current;
+    	var img, img_src_value, t0, div0, updating_charName, t1, div1, div1_style_value, current;
 
     	function character_charName_binding(value) {
     		ctx.character_charName_binding.call(null, value);
@@ -616,12 +616,13 @@ var app = (function () {
     			speechbox.$$.fragment.c();
     			attr(img, "src", img_src_value = "static/bckgrnds/" + ctx.backgroundSrc);
     			attr(img, "alt", "");
-    			attr(img, "class", "background svelte-h1f1i");
-    			add_location(img, file$2, 33, 0, 568);
-    			attr(div0, "class", "charactercontainer svelte-h1f1i");
-    			add_location(div0, file$2, 34, 0, 638);
-    			attr(div1, "class", "speechcontainer svelte-h1f1i");
-    			add_location(div1, file$2, 37, 0, 708);
+    			attr(img, "class", "background");
+    			add_location(img, file$2, 25, 0, 463);
+    			attr(div0, "class", "charactercontainer svelte-1r4tuws");
+    			add_location(div0, file$2, 26, 0, 533);
+    			attr(div1, "class", "speechcontainer svelte-1r4tuws");
+    			attr(div1, "style", div1_style_value = ctx.top ? 'top: 8%;' : '');
+    			add_location(div1, file$2, 29, 0, 603);
     		},
 
     		l: function claim(nodes) {
@@ -654,6 +655,10 @@ var app = (function () {
     			if (changed.charName) speechbox_changes.speaker = ctx.charName;
     			if (changed.text) speechbox_changes.text = ctx.text;
     			speechbox.$set(speechbox_changes);
+
+    			if ((!current || changed.top) && div1_style_value !== (div1_style_value = ctx.top ? 'top: 8%;' : '')) {
+    				attr(div1, "style", div1_style_value);
+    			}
     		},
 
     		i: function intro(local) {
@@ -691,9 +696,9 @@ var app = (function () {
     }
 
     function instance$2($$self, $$props, $$invalidate) {
-    	let { text, Character, charName, backgroundSrc } = $$props;
+    	let { text = '', Character = '', charName = '', backgroundSrc = '', top = false } = $$props;
 
-    	const writable_props = ['text', 'Character', 'charName', 'backgroundSrc'];
+    	const writable_props = ['text', 'Character', 'charName', 'backgroundSrc', 'top'];
     	Object.keys($$props).forEach(key => {
     		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<PersonLeft> was created with unknown prop '${key}'`);
     	});
@@ -708,6 +713,7 @@ var app = (function () {
     		if ('Character' in $$props) $$invalidate('Character', Character = $$props.Character);
     		if ('charName' in $$props) $$invalidate('charName', charName = $$props.charName);
     		if ('backgroundSrc' in $$props) $$invalidate('backgroundSrc', backgroundSrc = $$props.backgroundSrc);
+    		if ('top' in $$props) $$invalidate('top', top = $$props.top);
     	};
 
     	return {
@@ -715,6 +721,7 @@ var app = (function () {
     		Character,
     		charName,
     		backgroundSrc,
+    		top,
     		character_charName_binding
     	};
     }
@@ -722,22 +729,7 @@ var app = (function () {
     class PersonLeft extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$2, create_fragment$2, safe_not_equal, ["text", "Character", "charName", "backgroundSrc"]);
-
-    		const { ctx } = this.$$;
-    		const props = options.props || {};
-    		if (ctx.text === undefined && !('text' in props)) {
-    			console.warn("<PersonLeft> was created without expected prop 'text'");
-    		}
-    		if (ctx.Character === undefined && !('Character' in props)) {
-    			console.warn("<PersonLeft> was created without expected prop 'Character'");
-    		}
-    		if (ctx.charName === undefined && !('charName' in props)) {
-    			console.warn("<PersonLeft> was created without expected prop 'charName'");
-    		}
-    		if (ctx.backgroundSrc === undefined && !('backgroundSrc' in props)) {
-    			console.warn("<PersonLeft> was created without expected prop 'backgroundSrc'");
-    		}
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, ["text", "Character", "charName", "backgroundSrc", "top"]);
     	}
 
     	get text() {
@@ -771,13 +763,189 @@ var app = (function () {
     	set backgroundSrc(value) {
     		throw new Error("<PersonLeft>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get top() {
+    		throw new Error("<PersonLeft>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set top(value) {
+    		throw new Error("<PersonLeft>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
     }
+
+    /* src/templates/Initial.svelte generated by Svelte v3.6.9 */
+
+    const file$3 = "src/templates/Initial.svelte";
+
+    function create_fragment$3(ctx) {
+    	var img, img_src_value, t0, div1, div0, h1, t1, t2, p, t3;
+
+    	return {
+    		c: function create() {
+    			img = element("img");
+    			t0 = space();
+    			div1 = element("div");
+    			div0 = element("div");
+    			h1 = element("h1");
+    			t1 = text(ctx.header);
+    			t2 = space();
+    			p = element("p");
+    			t3 = text(ctx.subtext);
+    			attr(img, "src", img_src_value = "static/bckgrnds/" + ctx.backgroundSrc);
+    			attr(img, "alt", "");
+    			attr(img, "class", "background");
+    			add_location(img, file$3, 31, 0, 579);
+    			attr(h1, "class", "svelte-1y9dvh7");
+    			add_location(h1, file$3, 34, 4, 700);
+    			attr(p, "class", "svelte-1y9dvh7");
+    			add_location(p, file$3, 35, 4, 722);
+    			attr(div0, "class", "transpar svelte-1y9dvh7");
+    			add_location(div0, file$3, 33, 2, 673);
+    			attr(div1, "class", "wrapper svelte-1y9dvh7");
+    			add_location(div1, file$3, 32, 0, 649);
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, img, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, div1, anchor);
+    			append(div1, div0);
+    			append(div0, h1);
+    			append(h1, t1);
+    			append(div0, t2);
+    			append(div0, p);
+    			append(p, t3);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if ((changed.backgroundSrc) && img_src_value !== (img_src_value = "static/bckgrnds/" + ctx.backgroundSrc)) {
+    				attr(img, "src", img_src_value);
+    			}
+
+    			if (changed.header) {
+    				set_data(t1, ctx.header);
+    			}
+
+    			if (changed.subtext) {
+    				set_data(t3, ctx.subtext);
+    			}
+    		},
+
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(img);
+    				detach(t0);
+    				detach(div1);
+    			}
+    		}
+    	};
+    }
+
+    function instance$3($$self, $$props, $$invalidate) {
+    	let { backgroundSrc = "CityNight.jpg", header = "Welcome", subtext = "Welcome" } = $$props;
+
+    	const writable_props = ['backgroundSrc', 'header', 'subtext'];
+    	Object.keys($$props).forEach(key => {
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<Initial> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$set = $$props => {
+    		if ('backgroundSrc' in $$props) $$invalidate('backgroundSrc', backgroundSrc = $$props.backgroundSrc);
+    		if ('header' in $$props) $$invalidate('header', header = $$props.header);
+    		if ('subtext' in $$props) $$invalidate('subtext', subtext = $$props.subtext);
+    	};
+
+    	return { backgroundSrc, header, subtext };
+    }
+
+    class Initial extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, ["backgroundSrc", "header", "subtext"]);
+    	}
+
+    	get backgroundSrc() {
+    		throw new Error("<Initial>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set backgroundSrc(value) {
+    		throw new Error("<Initial>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get header() {
+    		throw new Error("<Initial>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set header(value) {
+    		throw new Error("<Initial>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get subtext() {
+    		throw new Error("<Initial>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set subtext(value) {
+    		throw new Error("<Initial>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    console.log(PersonLeft);
+
+    var levelOne = [
+      { 
+        template: Initial,
+        opts: { subtext: 'Click next to start', header: 'Learn to code and explore Indonesia!' }
+      },
+      {
+        template: PersonLeft,
+        opts: { 
+          text: `Hi! My name is Diah, and this is my hometown of Jakarta! 
+Jakarta is the largest city in Indonesia, and also its capital! Over 10 million people live here! 
+There are so many people who come to here for opportunities in business and education!`,
+          Character: MainPlayer,
+          backgroundSrc: "CityNight.jpg"
+        }
+      },
+      {
+        template: PersonLeft,
+        opts: {
+          Character: MainPlayer,
+          text: `I am on a mission to explore other parts of my beautiful country. Why don’t you come along?`,
+          backgroundSrc: "CityNight.jpg"
+        }
+      },
+      {
+        template: PersonLeft,
+        opts: {
+          Character: MainPlayer,
+          text: `The first stop on our journey will be Magelang! This city is home to the Borobudur Temple, the world’s biggest Buddhist Temple!`,
+          backgroundSrc: "BorbMap.png",
+          top: true
+        }
+      },
+      {
+        template: PersonLeft,
+        opts: {
+          Character: MainPlayer,
+          text: `Let’s stop by and explore what it’s like!`,
+          backgroundSrc: "BorbMap.png",
+          top: true
+        }
+      }
+    ];
 
     /* src/templates/CodeRender.svelte generated by Svelte v3.6.9 */
 
-    const file$3 = "src/templates/CodeRender.svelte";
+    const file$4 = "src/templates/CodeRender.svelte";
 
-    function create_fragment$3(ctx) {
+    function create_fragment$4(ctx) {
     	var div6, div2, div0, t1, div1, t3, div5, div3, textarea, t4, div4, dispose;
 
     	return {
@@ -796,14 +964,14 @@ var app = (function () {
     			t4 = space();
     			div4 = element("div");
     			attr(div0, "class", "svelte-wisvwj");
-    			add_location(div0, file$3, 81, 4, 1802);
+    			add_location(div0, file$4, 81, 4, 1802);
     			attr(div1, "class", "svelte-wisvwj");
-    			add_location(div1, file$3, 82, 4, 1833);
+    			add_location(div1, file$4, 82, 4, 1833);
     			attr(div2, "class", "top-container svelte-wisvwj");
     			set_style(div2, "display", "flex");
     			set_style(div2, "color", "white");
     			set_style(div2, "width", "100%");
-    			add_location(div2, file$3, 80, 2, 1720);
+    			add_location(div2, file$4, 80, 2, 1720);
     			attr(textarea, "name", "");
     			attr(textarea, "id", "");
     			attr(textarea, "cols", "400");
@@ -811,15 +979,15 @@ var app = (function () {
     			set_style(textarea, "width", "100%");
     			set_style(textarea, "height", "100%");
     			attr(textarea, "class", "svelte-wisvwj");
-    			add_location(textarea, file$3, 86, 6, 1955);
+    			add_location(textarea, file$4, 86, 6, 1955);
     			attr(div3, "class", "editSpot elem textarea-wrapper svelte-wisvwj");
-    			add_location(div3, file$3, 85, 4, 1904);
+    			add_location(div3, file$4, 85, 4, 1904);
     			attr(div4, "class", "renderSpot elem svelte-wisvwj");
-    			add_location(div4, file$3, 88, 4, 2112);
+    			add_location(div4, file$4, 88, 4, 2112);
     			attr(div5, "class", "editor-container svelte-wisvwj");
-    			add_location(div5, file$3, 84, 2, 1869);
+    			add_location(div5, file$4, 84, 2, 1869);
     			attr(div6, "class", "container svelte-wisvwj");
-    			add_location(div6, file$3, 79, 0, 1694);
+    			add_location(div6, file$4, 79, 0, 1694);
 
     			dispose = [
     				listen(textarea, "input", ctx.textarea_input_handler),
@@ -879,7 +1047,7 @@ var app = (function () {
       }
     }
 
-    function instance$3($$self, $$props, $$invalidate) {
+    function instance$4($$self, $$props, $$invalidate) {
     	// localStorage.setItem('user', JSON.stringify(user));
 
     // Then to retrieve it from the store and convert to an object again:
@@ -915,7 +1083,7 @@ var app = (function () {
     class CodeRender extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$3, create_fragment$3, safe_not_equal, ["htmlRender"]);
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, ["htmlRender"]);
     	}
 
     	get htmlRender() {
@@ -929,7 +1097,11 @@ var app = (function () {
 
     console.log(PersonLeft);
 
-    var levelOne = [
+    var levelTwo = [
+      { 
+        template: Initial,
+        opts: { subtext: 'Click next to start level one', header: 'Now, the real work begins, let\'s learn some HTML' }
+      },
       {
         template: PersonLeft,
         opts: { 
@@ -937,7 +1109,7 @@ var app = (function () {
 Jakarta is the largest city in Indonesia, and also its capital! Over 10 million people live here!
 There are so many people who come to here for opportunities in business and education!`,
           Character: MainPlayer,
-          backgroundSrc: "generic.jpg"
+          backgroundSrc: "CityNight.jpg"
         }
       },
       {
@@ -945,7 +1117,7 @@ There are so many people who come to here for opportunities in business and educ
         opts: {
           Character: MainPlayer,
           text: `I am on a mission to explore other parts of my beautiful country. Why don’t you come along?`,
-          backgroundSrc: "generic.jpg"
+          backgroundSrc: "CityNight.jpg"
         }
       },
       {
@@ -953,7 +1125,8 @@ There are so many people who come to here for opportunities in business and educ
         opts: {
           Character: MainPlayer,
           text: `The first stop on our journey will be Magelang! This city is home to the Borobudur Temple, the world’s biggest Buddhist Temple!`,
-          backgroundSrc: "generic.jpg" //TODO change
+          backgroundSrc: "BorbMap.png",
+          top: true
         }
       },
       {
@@ -961,7 +1134,8 @@ There are so many people who come to here for opportunities in business and educ
         opts: {
           Character: MainPlayer,
           text: `Let’s stop by and explore what it’s like!`,
-          backgroundSrc: "generic.jpg" //TODO change
+          backgroundSrc: "BorbMap.png",
+          top: true
         }
       },
       {
@@ -970,7 +1144,8 @@ There are so many people who come to here for opportunities in business and educ
     ];
 
     var levels = [
-      levelOne
+      levelOne,
+      levelTwo
     ];
 
     const subscriber_queue = [];
@@ -1027,9 +1202,9 @@ There are so many people who come to here for opportunities in business and educ
 
     /* src/App.svelte generated by Svelte v3.6.9 */
 
-    const file$4 = "src/App.svelte";
+    const file$5 = "src/App.svelte";
 
-    // (68:0) {#if mainVis}
+    // (96:0) {#if mainVis}
     function create_if_block(ctx) {
     	var div, current;
 
@@ -1050,8 +1225,8 @@ There are so many people who come to here for opportunities in business and educ
     		c: function create() {
     			div = element("div");
     			currentcomponent.$$.fragment.c();
-    			attr(div, "class", "main-content svelte-ynh0am");
-    			add_location(div, file$4, 68, 0, 1936);
+    			attr(div, "class", "main-content svelte-1at3n9h");
+    			add_location(div, file$5, 96, 0, 2614);
     		},
 
     		m: function mount(target, anchor) {
@@ -1089,8 +1264,8 @@ There are so many people who come to here for opportunities in business and educ
     	};
     }
 
-    function create_fragment$4(ctx) {
-    	var div, button0, t1, button1, t3, if_block_anchor, current, dispose;
+    function create_fragment$5(ctx) {
+    	var div, button0, t0, button1, t1, if_block_anchor, current, dispose;
 
     	var if_block = (ctx.mainVis) && create_if_block(ctx);
 
@@ -1098,17 +1273,17 @@ There are so many people who come to here for opportunities in business and educ
     		c: function create() {
     			div = element("div");
     			button0 = element("button");
-    			button0.textContent = "I have to go back";
-    			t1 = space();
+    			t0 = space();
     			button1 = element("button");
-    			button1.textContent = "Next Please!";
-    			t3 = space();
+    			t1 = space();
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
-    			add_location(button0, file$4, 64, 1, 1777);
-    			add_location(button1, file$4, 65, 1, 1849);
-    			attr(div, "class", "direction-selection svelte-ynh0am");
-    			add_location(div, file$4, 63, 0, 1742);
+    			attr(button0, "class", "back svelte-1at3n9h");
+    			add_location(button0, file$5, 92, 1, 2458);
+    			attr(button1, "class", "next svelte-1at3n9h");
+    			add_location(button1, file$5, 93, 1, 2526);
+    			attr(div, "class", "direction-selection svelte-1at3n9h");
+    			add_location(div, file$5, 91, 0, 2423);
 
     			dispose = [
     				listen(button0, "click", ctx.click_handler),
@@ -1123,9 +1298,9 @@ There are so many people who come to here for opportunities in business and educ
     		m: function mount(target, anchor) {
     			insert(target, div, anchor);
     			append(div, button0);
-    			append(div, t1);
+    			append(div, t0);
     			append(div, button1);
-    			insert(target, t3, anchor);
+    			insert(target, t1, anchor);
     			if (if_block) if_block.m(target, anchor);
     			insert(target, if_block_anchor, anchor);
     			current = true;
@@ -1165,7 +1340,7 @@ There are so many people who come to here for opportunities in business and educ
     		d: function destroy(detaching) {
     			if (detaching) {
     				detach(div);
-    				detach(t3);
+    				detach(t1);
     			}
 
     			if (if_block) if_block.d(detaching);
@@ -1179,7 +1354,7 @@ There are so many people who come to here for opportunities in business and educ
     	};
     }
 
-    function instance$4($$self, $$props, $$invalidate) {
+    function instance$5($$self, $$props, $$invalidate) {
     	
     	let { name } = $$props;
     	let mainVis = true;
@@ -1210,7 +1385,7 @@ There are so many people who come to here for opportunities in business and educ
     	function decrementStage() {
     		currentSublevel--;		if (currentSublevel < 0) {
     			currentLevel = currentLevel > 0 ? currentLevel - 1 : 0;
-    			currentSublevel = currentLevel > 0 ? levels[currentLevel].length - 1 : currentSublevel--;			currentSublevel = currentSublevel >= 0 ? currentSublevel : 0;
+    			currentSublevel = currentLevel >= 0 ? levels[currentLevel].length - 1 : currentSublevel--;			currentSublevel = currentSublevel >= 0 ? currentSublevel : 0;
     		}
     		setScreen();
     	}
@@ -1222,6 +1397,19 @@ There are so many people who come to here for opportunities in business and educ
     		_CurrentComponent.set(levels[currentLevel][currentSublevel].template);
     		setTimeout(() => {$$invalidate('mainVis', mainVis=true);}, 40);
     	}
+    	// document.onload = () => {
+    	// 	document.documentElement.requestFullscreen();
+    	// }
+    	// function GoInFullscreen(element) {
+    	// 	if(element.requestFullscreen)
+    	// 		element.requestFullscreen();
+    	// 	else if(element.mozRequestFullScreen)
+    	// 		element.mozRequestFullScreen();
+    	// 	else if(element.webkitRequestFullscreen)
+    	// 		element.webkitRequestFullscreen();
+    	// 	else if(element.msRequestFullscreen)
+    	// 		element.msRequestFullscreen();
+    	// }
 
     	const writable_props = ['name', 'CurrentScreen', 'CurrentComponent'];
     	Object.keys($$props).forEach(key => {
@@ -1257,7 +1445,7 @@ There are so many people who come to here for opportunities in business and educ
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$4, create_fragment$4, safe_not_equal, ["name", "CurrentScreen", "CurrentComponent"]);
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, ["name", "CurrentScreen", "CurrentComponent"]);
 
     		const { ctx } = this.$$;
     		const props = options.props || {};

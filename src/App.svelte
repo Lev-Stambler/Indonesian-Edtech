@@ -34,7 +34,7 @@
 		currentSublevel--
 		if (currentSublevel < 0) {
 			currentLevel = currentLevel > 0 ? currentLevel - 1 : 0
-			currentSublevel = currentLevel > 0 ? levels[currentLevel].length - 1 : currentSublevel--
+			currentSublevel = currentLevel >= 0 ? levels[currentLevel].length - 1 : currentSublevel--
 			currentSublevel = currentSublevel >= 0 ? currentSublevel : 0
 		}
 		setScreen()
@@ -47,6 +47,19 @@
 		_CurrentComponent.set(levels[currentLevel][currentSublevel].template)
 		setTimeout(() => {mainVis=true}, 40)
 	}
+	// document.onload = () => {
+	// 	document.documentElement.requestFullscreen();
+	// }
+	// function GoInFullscreen(element) {
+	// 	if(element.requestFullscreen)
+	// 		element.requestFullscreen();
+	// 	else if(element.mozRequestFullScreen)
+	// 		element.mozRequestFullScreen();
+	// 	else if(element.webkitRequestFullscreen)
+	// 		element.webkitRequestFullscreen();
+	// 	else if(element.msRequestFullscreen)
+	// 		element.msRequestFullscreen();
+	// }
 </script>
 
 <style>
@@ -59,11 +72,26 @@
 .main-content {
 	z-index: 1;
 }
+
+button.back {
+	background: url("static/misc/BtnBack.png");
+}
+
+button.next {
+	background: url("static/misc/BtnNext.png");
+}
+button {
+	background-size: cover!important;
+	height: 40px;
+	width: 90px;
+	border: 0px;
+	cursor: pointer;
+}
 </style>
 
 <div class="direction-selection">
-	<button on:click="{() => decrementStage()}">I have to go back</button>
-	<button on:click="{() => incrementStage()}">Next Please!</button>
+	<button on:click="{() => decrementStage()}" class="back"></button>
+	<button on:click="{() => incrementStage()}" class="next"></button>
 </div>
 {#if mainVis}
 <div class="main-content">
