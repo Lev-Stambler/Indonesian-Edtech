@@ -3,8 +3,10 @@
 </script>
 <style>
     img {
-      width: 100%;
-      height: 100%;
+      width: 300px;
+      height: 600px;
+      margin-left: 8rem;
+      transform: scaleX(-1);
     }
 </style>
-<img src="static/chars/Di.png" alt="{charName}">
+<img src="static/chars/Diah.png" alt="{charName}">

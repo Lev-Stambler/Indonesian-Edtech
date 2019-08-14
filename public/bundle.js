@@ -352,10 +352,10 @@ var app = (function () {
     	return {
     		c: function create() {
     			img = element("img");
-    			attr(img, "src", "static/chars/Di.png");
+    			attr(img, "src", "static/chars/Diah.png");
     			attr(img, "alt", ctx.charName);
-    			attr(img, "class", "svelte-c4ky2f");
-    			add_location(img, file, 9, 0, 124);
+    			attr(img, "class", "svelte-17rtt07");
+    			add_location(img, file, 11, 0, 180);
     		},
 
     		l: function claim(nodes) {
