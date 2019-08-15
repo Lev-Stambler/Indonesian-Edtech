@@ -3,8 +3,8 @@
 </script>
 <style>
     img {
-      width: 300px;
-      height: 600px;
+      width: 250px;
+      height: 400px;
       margin-left: 8rem;
       transform: scaleX(-1);
     }

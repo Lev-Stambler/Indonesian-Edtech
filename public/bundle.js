@@ -354,7 +354,7 @@ var app = (function () {
     			img = element("img");
     			attr(img, "src", "static/chars/Diah.png");
     			attr(img, "alt", ctx.charName);
-    			attr(img, "class", "svelte-17rtt07");
+    			attr(img, "class", "svelte-r83hfj");
     			add_location(img, file, 11, 0, 180);
     		},
 
@@ -796,7 +796,7 @@ var app = (function () {
     			div.dataset.aos = "fade-up";
     			set_style(div, "display", "inline-block");
     			div.dataset.aosDelay = ctx.index * 50;
-    			add_location(div, file$3, 36, 8, 786);
+    			add_location(div, file$3, 36, 8, 790);
     		},
 
     		m: function mount(target, anchor) {
@@ -848,17 +848,17 @@ var app = (function () {
     			attr(img, "src", img_src_value = "static/bckgrnds/" + ctx.backgroundSrc);
     			attr(img, "alt", "");
     			attr(img, "class", "background");
-    			add_location(img, file$3, 31, 0, 582);
-    			attr(h1, "class", "svelte-av3lrp");
-    			add_location(h1, file$3, 34, 4, 703);
+    			add_location(img, file$3, 31, 0, 586);
+    			attr(h1, "class", "svelte-1fpskzz");
+    			add_location(h1, file$3, 34, 4, 707);
     			p.dataset.aos = "fade-left";
     			p.dataset.aosDelay = "300";
-    			attr(p, "class", "svelte-av3lrp");
-    			add_location(p, file$3, 41, 4, 945);
-    			attr(div0, "class", "transpar svelte-av3lrp");
-    			add_location(div0, file$3, 33, 2, 676);
-    			attr(div1, "class", "wrapper svelte-av3lrp");
-    			add_location(div1, file$3, 32, 0, 652);
+    			attr(p, "class", "svelte-1fpskzz");
+    			add_location(p, file$3, 41, 4, 949);
+    			attr(div0, "class", "transpar svelte-1fpskzz");
+    			add_location(div0, file$3, 33, 2, 680);
+    			attr(div1, "class", "wrapper svelte-1fpskzz");
+    			add_location(div1, file$3, 32, 0, 656);
     		},
 
     		l: function claim(nodes) {
@@ -928,7 +928,7 @@ var app = (function () {
     }
 
     function instance$3($$self, $$props, $$invalidate) {
-    	let { backgroundSrc = "CityNight.jpg", header = "Welcome", subtext = "Welcome" } = $$props;
+    	let { backgroundSrc = "generic.png", header = "Welcome", subtext = "Welcome" } = $$props;
 
     	const writable_props = ['backgroundSrc', 'header', 'subtext'];
     	Object.keys($$props).forEach(key => {
@@ -989,7 +989,7 @@ var app = (function () {
 Jakarta is the largest city in Indonesia, and also its capital! Over 10 million people live here! 
 There are so many people who come to here for opportunities in business and education!`,
           Character: MainPlayer,
-          backgroundSrc: "CityNight.jpg"
+          backgroundSrc: "generic.png"
         }
       },
       {
@@ -997,7 +997,7 @@ There are so many people who come to here for opportunities in business and educ
         opts: {
           Character: MainPlayer,
           text: `I am on a mission to explore other parts of my beautiful country. Why don’t you come along?`,
-          backgroundSrc: "CityNight.jpg"
+          backgroundSrc: "generic.png"
         }
       },
       {
@@ -1516,9 +1516,9 @@ There are so many people who come to here for opportunities in business and educ
 
     const file$6 = "src/App.svelte";
 
-    // (96:0) {#if mainVis}
+    // (119:0) {#if mainVis}
     function create_if_block$1(ctx) {
-    	var div, current;
+    	var div2, div1, div0, current;
 
     	var currentcomponent_spread_levels = [
     		ctx.CurrentScreen.opts
@@ -1535,15 +1535,23 @@ There are so many people who come to here for opportunities in business and educ
 
     	return {
     		c: function create() {
-    			div = element("div");
+    			div2 = element("div");
+    			div1 = element("div");
+    			div0 = element("div");
     			currentcomponent.$$.fragment.c();
-    			attr(div, "class", "main-content svelte-1at3n9h");
-    			add_location(div, file$6, 96, 0, 2614);
+    			attr(div0, "class", "main-content svelte-1ti3swl");
+    			add_location(div0, file$6, 121, 2, 3114);
+    			attr(div1, "class", "border svelte-1ti3swl");
+    			add_location(div1, file$6, 120, 1, 3091);
+    			attr(div2, "class", "border-wrapper svelte-1ti3swl");
+    			add_location(div2, file$6, 119, 0, 3061);
     		},
 
     		m: function mount(target, anchor) {
-    			insert(target, div, anchor);
-    			mount_component(currentcomponent, div, null);
+    			insert(target, div2, anchor);
+    			append(div2, div1);
+    			append(div1, div0);
+    			mount_component(currentcomponent, div0, null);
     			current = true;
     		},
 
@@ -1568,7 +1576,7 @@ There are so many people who come to here for opportunities in business and educ
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach(div);
+    				detach(div2);
     			}
 
     			destroy_component(currentcomponent);
@@ -1577,25 +1585,29 @@ There are so many people who come to here for opportunities in business and educ
     }
 
     function create_fragment$6(ctx) {
-    	var div, button0, t0, button1, t1, if_block_anchor, current, dispose;
+    	var div0, t0, div1, button0, t1, button1, t2, if_block_anchor, current, dispose;
 
     	var if_block = (ctx.mainVis) && create_if_block$1(ctx);
 
     	return {
     		c: function create() {
-    			div = element("div");
-    			button0 = element("button");
+    			div0 = element("div");
     			t0 = space();
-    			button1 = element("button");
+    			div1 = element("div");
+    			button0 = element("button");
     			t1 = space();
+    			button1 = element("button");
+    			t2 = space();
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
-    			attr(button0, "class", "back svelte-1at3n9h");
-    			add_location(button0, file$6, 92, 1, 2458);
-    			attr(button1, "class", "next svelte-1at3n9h");
-    			add_location(button1, file$6, 93, 1, 2526);
-    			attr(div, "class", "direction-selection svelte-1at3n9h");
-    			add_location(div, file$6, 91, 0, 2423);
+    			attr(div0, "class", "full background");
+    			add_location(div0, file$6, 113, 0, 2834);
+    			attr(button0, "class", "back svelte-1ti3swl");
+    			add_location(button0, file$6, 115, 1, 2905);
+    			attr(button1, "class", "next svelte-1ti3swl");
+    			add_location(button1, file$6, 116, 1, 2973);
+    			attr(div1, "class", "direction-selection svelte-1ti3swl");
+    			add_location(div1, file$6, 114, 0, 2870);
 
     			dispose = [
     				listen(button0, "click", ctx.click_handler),
@@ -1608,11 +1620,13 @@ There are so many people who come to here for opportunities in business and educ
     		},
 
     		m: function mount(target, anchor) {
-    			insert(target, div, anchor);
-    			append(div, button0);
-    			append(div, t0);
-    			append(div, button1);
-    			insert(target, t1, anchor);
+    			insert(target, div0, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, div1, anchor);
+    			append(div1, button0);
+    			append(div1, t1);
+    			append(div1, button1);
+    			insert(target, t2, anchor);
     			if (if_block) if_block.m(target, anchor);
     			insert(target, if_block_anchor, anchor);
     			current = true;
@@ -1651,8 +1665,10 @@ There are so many people who come to here for opportunities in business and educ
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach(div);
-    				detach(t1);
+    				detach(div0);
+    				detach(t0);
+    				detach(div1);
+    				detach(t2);
     			}
 
     			if (if_block) if_block.d(detaching);

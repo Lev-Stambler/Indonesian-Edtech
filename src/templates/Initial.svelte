@@ -1,11 +1,11 @@
 <script>
-  export let backgroundSrc = "CityNight.jpg"
+  export let backgroundSrc = "generic.png"
   export let header = "Welcome"
   export let subtext = "Welcome"
 </script>
 <style>
   .wrapper {
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
     height: 100%;
     display: flex;

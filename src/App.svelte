@@ -66,11 +66,16 @@
 .direction-selection {
 	z-index: 2;
 	position: absolute;
-	top: 2%;
-	right: 2%;
+	top: 1%;
+	right: 1%;
+	left: 70%;
+	display: flex;
+	justify-content: space-between;
 }
 .main-content {
 	z-index: 1;
+	position: relative;
+	height: 100%;
 }
 
 button.back {
@@ -87,14 +92,36 @@ button {
 	border: 0px;
 	cursor: pointer;
 }
+
+.border-wrapper {
+	padding: 2rem;
+	width: 100%;
+	height: 100%;
+	background: url("static/bckgrnds/CityNight.png");
+	background-size: contain;
+}
+
+.border {
+	border: 6px gold;
+	border-style: groove;
+	position: relative;
+	width: calc(100% - 4rem);
+	height: calc(100% - 4rem);
+	box-shadow: 10px 10px 15px 0px black;
+}
 </style>
 
+<div class="full background"></div>
 <div class="direction-selection">
 	<button on:click="{() => decrementStage()}" class="back"></button>
 	<button on:click="{() => incrementStage()}" class="next"></button>
 </div>
 {#if mainVis}
-<div class="main-content">
-	<CurrentComponent {...CurrentScreen.opts}/>
+<div class="border-wrapper">
+	<div class="border">
+		<div class="main-content">
+			<CurrentComponent {...CurrentScreen.opts}/>
+		</div>
+</div>
 </div>
 {/if}

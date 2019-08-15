@@ -16,7 +16,7 @@ export default [
 Jakarta is the largest city in Indonesia, and also its capital! Over 10 million people live here! 
 There are so many people who come to here for opportunities in business and education!`,
       Character: MainPlayer,
-      backgroundSrc: "CityNight.jpg"
+      backgroundSrc: "generic.png"
     }
   },
   {
@@ -24,7 +24,7 @@ There are so many people who come to here for opportunities in business and educ
     opts: {
       Character: MainPlayer,
       text: `I am on a mission to explore other parts of my beautiful country. Why don’t you come along?`,
-      backgroundSrc: "CityNight.jpg"
+      backgroundSrc: "generic.png"
     }
   },
   {
