@@ -31,7 +31,6 @@ export default [
     template: Video,
     opts: { 
       text: `It's advised that you take notes; but, do not worry. You can always come back and rewatch the video!`,
-      Character: MainPlayer,
       vidSrc: "https://images.bonanzastatic.com/uploads/burnees/7eqg-0001-3554625-1565824062.jpg"
     }
   },
@@ -44,7 +43,17 @@ export default [
   {
     template: CodeRender,
     opts: {
+      challengeText: 'The Monks have a challenge!',
       text: `The monks need to create a flier to alert the members of the temple to sign up to help. Create the basic skeleton of this html page using what you just learned.`
+    }
+  },
+  {
+    template: PersonLeft,
+    opts: {
+      Character: MainPlayer,
+      text: `Next stop is Bogor, where we have the Bogor Botanical gardens.`,
+      backgroundSrc: "MapNext.png",
+      top: true
     }
   }
 ]

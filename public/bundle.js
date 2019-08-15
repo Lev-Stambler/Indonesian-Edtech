@@ -1024,32 +1024,84 @@ There are so many people who come to here for opportunities in business and educ
 
     const file$4 = "src/templates/CodeRender.svelte";
 
-    // (88:2) {#if text}
+    // (92:2) {#if text}
     function create_if_block(ctx) {
-    	var p, t;
+    	var p, t0, t1;
+
+    	var if_block = (ctx.challengeText) && create_if_block_1(ctx);
 
     	return {
     		c: function create() {
     			p = element("p");
-    			t = text(ctx.text);
-    			attr(p, "class", "svelte-iu9vyu");
-    			add_location(p, file$4, 88, 4, 1913);
+    			if (if_block) if_block.c();
+    			t0 = space();
+    			t1 = text(ctx.text);
+    			attr(p, "class", "svelte-asj80w");
+    			add_location(p, file$4, 92, 4, 1986);
     		},
 
     		m: function mount(target, anchor) {
     			insert(target, p, anchor);
-    			append(p, t);
+    			if (if_block) if_block.m(p, null);
+    			append(p, t0);
+    			append(p, t1);
     		},
 
     		p: function update(changed, ctx) {
+    			if (ctx.challengeText) {
+    				if (if_block) {
+    					if_block.p(changed, ctx);
+    				} else {
+    					if_block = create_if_block_1(ctx);
+    					if_block.c();
+    					if_block.m(p, t0);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
     			if (changed.text) {
-    				set_data(t, ctx.text);
+    				set_data(t1, ctx.text);
     			}
     		},
 
     		d: function destroy(detaching) {
     			if (detaching) {
     				detach(p);
+    			}
+
+    			if (if_block) if_block.d();
+    		}
+    	};
+    }
+
+    // (94:4) {#if challengeText}
+    function create_if_block_1(ctx) {
+    	var h3, t;
+
+    	return {
+    		c: function create() {
+    			h3 = element("h3");
+    			t = text(ctx.challengeText);
+    			attr(h3, "class", "svelte-asj80w");
+    			add_location(h3, file$4, 94, 7, 2021);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, h3, anchor);
+    			append(h3, t);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.challengeText) {
+    				set_data(t, ctx.challengeText);
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(h3);
     			}
     		}
     	};
@@ -1077,31 +1129,31 @@ There are so many people who come to here for opportunities in business and educ
     			textarea = element("textarea");
     			t5 = space();
     			div4 = element("div");
-    			attr(div0, "class", "svelte-iu9vyu");
-    			add_location(div0, file$4, 93, 4, 2031);
-    			attr(div1, "class", "svelte-iu9vyu");
-    			add_location(div1, file$4, 94, 4, 2062);
-    			attr(div2, "class", "top-container svelte-iu9vyu");
+    			attr(div0, "class", "svelte-asj80w");
+    			add_location(div0, file$4, 100, 4, 2170);
+    			attr(div1, "class", "svelte-asj80w");
+    			add_location(div1, file$4, 101, 4, 2201);
+    			attr(div2, "class", "top-container svelte-asj80w");
     			set_style(div2, "display", "flex");
     			set_style(div2, "color", "white");
     			set_style(div2, "width", "100%");
-    			add_location(div2, file$4, 92, 2, 1949);
+    			add_location(div2, file$4, 99, 2, 2088);
     			attr(textarea, "name", "");
     			attr(textarea, "id", "");
     			attr(textarea, "cols", "400");
     			attr(textarea, "rows", "10");
     			set_style(textarea, "width", "100%");
     			set_style(textarea, "height", "100%");
-    			attr(textarea, "class", "svelte-iu9vyu");
-    			add_location(textarea, file$4, 98, 6, 2184);
-    			attr(div3, "class", "editSpot elem textarea-wrapper svelte-iu9vyu");
-    			add_location(div3, file$4, 97, 4, 2133);
-    			attr(div4, "class", "renderSpot elem svelte-iu9vyu");
-    			add_location(div4, file$4, 100, 4, 2341);
-    			attr(div5, "class", "editor-container svelte-iu9vyu");
-    			add_location(div5, file$4, 96, 2, 2098);
-    			attr(div6, "class", "container svelte-iu9vyu");
-    			add_location(div6, file$4, 86, 0, 1872);
+    			attr(textarea, "class", "svelte-asj80w");
+    			add_location(textarea, file$4, 105, 6, 2323);
+    			attr(div3, "class", "editSpot elem textarea-wrapper svelte-asj80w");
+    			add_location(div3, file$4, 104, 4, 2272);
+    			attr(div4, "class", "renderSpot elem svelte-asj80w");
+    			add_location(div4, file$4, 107, 4, 2480);
+    			attr(div5, "class", "editor-container svelte-asj80w");
+    			add_location(div5, file$4, 103, 2, 2237);
+    			attr(div6, "class", "container svelte-asj80w");
+    			add_location(div6, file$4, 90, 0, 1945);
 
     			dispose = [
     				listen(textarea, "input", ctx.textarea_input_handler),
@@ -1191,9 +1243,9 @@ There are so many people who come to here for opportunities in business and educ
       let textareas = document.getElementsByTagName('textarea');
       let count = textareas.length;
 
-      let { htmlRender = "", text = false } = $$props;
+      let { htmlRender = "", text = false, challengeText = false } = $$props;
 
-    	const writable_props = ['htmlRender', 'text'];
+    	const writable_props = ['htmlRender', 'text', 'challengeText'];
     	Object.keys($$props).forEach(key => {
     		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<CodeRender> was created with unknown prop '${key}'`);
     	});
@@ -1206,15 +1258,21 @@ There are so many people who come to here for opportunities in business and educ
     	$$self.$set = $$props => {
     		if ('htmlRender' in $$props) $$invalidate('htmlRender', htmlRender = $$props.htmlRender);
     		if ('text' in $$props) $$invalidate('text', text = $$props.text);
+    		if ('challengeText' in $$props) $$invalidate('challengeText', challengeText = $$props.challengeText);
     	};
 
-    	return { htmlRender, text, textarea_input_handler };
+    	return {
+    		htmlRender,
+    		text,
+    		challengeText,
+    		textarea_input_handler
+    	};
     }
 
     class CodeRender extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$4, create_fragment$4, safe_not_equal, ["htmlRender", "text"]);
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, ["htmlRender", "text", "challengeText"]);
     	}
 
     	get htmlRender() {
@@ -1232,30 +1290,114 @@ There are so many people who come to here for opportunities in business and educ
     	set text(value) {
     		throw new Error("<CodeRender>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get challengeText() {
+    		throw new Error("<CodeRender>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set challengeText(value) {
+    		throw new Error("<CodeRender>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
     }
 
     /* src/templates/Video.svelte generated by Svelte v3.6.9 */
 
+    const file$5 = "src/templates/Video.svelte";
+
     function create_fragment$5(ctx) {
+    	var div, p, t0, t1, video, source;
+
     	return {
-    		c: noop,
+    		c: function create() {
+    			div = element("div");
+    			p = element("p");
+    			t0 = text(ctx.text);
+    			t1 = space();
+    			video = element("video");
+    			source = element("source");
+    			add_location(p, file$5, 1, 2, 26);
+    			attr(source, "src", ctx.vidSrc);
+    			attr(source, "type", "video/mp4");
+    			add_location(source, file$5, 5, 4, 102);
+    			attr(video, "src", ctx.vidSrc);
+    			attr(video, "height", "600");
+    			attr(video, "width", "800");
+    			add_location(video, file$5, 4, 2, 50);
+    			attr(div, "class", "container svelte-1kk3kvq");
+    			add_location(div, file$5, 0, 0, 0);
+    		},
 
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
 
-    		m: noop,
-    		p: noop,
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+    			append(div, p);
+    			append(p, t0);
+    			append(div, t1);
+    			append(div, video);
+    			append(video, source);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.text) {
+    				set_data(t0, ctx.text);
+    			}
+
+    			if (changed.vidSrc) {
+    				attr(source, "src", ctx.vidSrc);
+    				attr(video, "src", ctx.vidSrc);
+    			}
+    		},
+
     		i: noop,
     		o: noop,
-    		d: noop
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+    		}
     	};
+    }
+
+    function instance$5($$self, $$props, $$invalidate) {
+    	let { vidSrc = false, text = '' } = $$props;
+
+    	const writable_props = ['vidSrc', 'text'];
+    	Object.keys($$props).forEach(key => {
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<Video> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$set = $$props => {
+    		if ('vidSrc' in $$props) $$invalidate('vidSrc', vidSrc = $$props.vidSrc);
+    		if ('text' in $$props) $$invalidate('text', text = $$props.text);
+    	};
+
+    	return { vidSrc, text };
     }
 
     class Video extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, null, create_fragment$5, safe_not_equal, []);
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, ["vidSrc", "text"]);
+    	}
+
+    	get vidSrc() {
+    		throw new Error("<Video>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set vidSrc(value) {
+    		throw new Error("<Video>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get text() {
+    		throw new Error("<Video>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set text(value) {
+    		throw new Error("<Video>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
@@ -1286,7 +1428,6 @@ There are so many people who come to here for opportunities in business and educ
         template: Video,
         opts: { 
           text: `It's advised that you take notes; but, do not worry. You can always come back and rewatch the video!`,
-          Character: MainPlayer,
           vidSrc: "https://images.bonanzastatic.com/uploads/burnees/7eqg-0001-3554625-1565824062.jpg"
         }
       },
@@ -1299,7 +1440,17 @@ There are so many people who come to here for opportunities in business and educ
       {
         template: CodeRender,
         opts: {
+          challengeText: 'The Monks have a challenge!',
           text: `The monks need to create a flier to alert the members of the temple to sign up to help. Create the basic skeleton of this html page using what you just learned.`
+        }
+      },
+      {
+        template: PersonLeft,
+        opts: {
+          Character: MainPlayer,
+          text: `Next stop is Bogor, where we have the Bogor Botanical gardens.`,
+          backgroundSrc: "MapNext.png",
+          top: true
         }
       }
     ];
@@ -1363,7 +1514,7 @@ There are so many people who come to here for opportunities in business and educ
 
     /* src/App.svelte generated by Svelte v3.6.9 */
 
-    const file$5 = "src/App.svelte";
+    const file$6 = "src/App.svelte";
 
     // (96:0) {#if mainVis}
     function create_if_block$1(ctx) {
@@ -1387,7 +1538,7 @@ There are so many people who come to here for opportunities in business and educ
     			div = element("div");
     			currentcomponent.$$.fragment.c();
     			attr(div, "class", "main-content svelte-1at3n9h");
-    			add_location(div, file$5, 96, 0, 2614);
+    			add_location(div, file$6, 96, 0, 2614);
     		},
 
     		m: function mount(target, anchor) {
@@ -1440,11 +1591,11 @@ There are so many people who come to here for opportunities in business and educ
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
     			attr(button0, "class", "back svelte-1at3n9h");
-    			add_location(button0, file$5, 92, 1, 2458);
+    			add_location(button0, file$6, 92, 1, 2458);
     			attr(button1, "class", "next svelte-1at3n9h");
-    			add_location(button1, file$5, 93, 1, 2526);
+    			add_location(button1, file$6, 93, 1, 2526);
     			attr(div, "class", "direction-selection svelte-1at3n9h");
-    			add_location(div, file$5, 91, 0, 2423);
+    			add_location(div, file$6, 91, 0, 2423);
 
     			dispose = [
     				listen(button0, "click", ctx.click_handler),
@@ -1515,7 +1666,7 @@ There are so many people who come to here for opportunities in business and educ
     	};
     }
 
-    function instance$5($$self, $$props, $$invalidate) {
+    function instance$6($$self, $$props, $$invalidate) {
     	
     	let { name } = $$props;
     	let mainVis = true;
@@ -1606,7 +1757,7 @@ There are so many people who come to here for opportunities in business and educ
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$5, create_fragment$6, safe_not_equal, ["name", "CurrentScreen", "CurrentComponent"]);
+    		init(this, options, instance$6, create_fragment$6, safe_not_equal, ["name", "CurrentScreen", "CurrentComponent"]);
 
     		const { ctx } = this.$$;
     		const props = options.props || {};

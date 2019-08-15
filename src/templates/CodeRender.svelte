@@ -24,6 +24,7 @@
 
   export let htmlRender = ""
   export let text = false
+  export let challengeText = false
 </script>
 <style>
   .container {
@@ -77,16 +78,22 @@
     background-position: left 10px;
   }
   p {
-    background: rgb(255, 255, 255);
+    background: rgb(202, 248, 255);
     color: rgb(65, 65, 65);
     padding: 1rem;
     border-radius: 0.4rem;
     display: inline-block;
   }
+  h3 {
+    color: rgb(0, 179, 0);
+  }
 </style>
 <div class="container">
   {#if text}
     <p>
+    {#if challengeText}
+       <h3>{challengeText}</h3>
+    {/if}
       {text}
     </p>
   {/if}
