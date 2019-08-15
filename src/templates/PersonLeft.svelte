@@ -27,6 +27,6 @@
 <div class="charactercontainer">
   <Character bind:charName />
 </div>
-<div class="speechcontainer" style="{ top ? 'top: 8%;' : ''}">
+<div class="speechcontainer" style="{ top ? 'top: 5%; left: 25%; right: 15%;' : ''}">
   <Speechbox speaker={charName} text={text} />
 </div>

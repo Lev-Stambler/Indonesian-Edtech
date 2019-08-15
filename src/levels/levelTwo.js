@@ -2,6 +2,7 @@ import MainPlayer from "../components/players/MainPlayer.svelte"
 import PersonLeft from "../templates/PersonLeft.svelte"
 import CodeRender from "../templates/CodeRender.svelte"
 import Init from "../templates/Initial.svelte"
+import Video from "../templates/Video.svelte"
 
 console.log(PersonLeft)
 
@@ -13,40 +14,37 @@ export default [
   {
     template: PersonLeft,
     opts: { 
-      text: `Hi! My name is Diah, and this is my hometown of Jakarta! 
-Jakarta is the largest city in Indonesia, and also its capital! Over 10 million people live here!
-There are so many people who come to here for opportunities in business and education!`,
+      text: `Welcome to Yogakarta, home to the Borobudur temple. This temple has been around since the 9th century (1200 years ago) and has survived many volcanic eruptions, terrorist bombings and even earthquakes!`,
       Character: MainPlayer,
-      backgroundSrc: "CityNight.jpg"
+      backgroundSrc: "Borb.png"
     }
   },
   {
     template: PersonLeft,
     opts: {
       Character: MainPlayer,
-      text: `I am on a mission to explore other parts of my beautiful country. Why don’t you come along?`,
-      backgroundSrc: "CityNight.jpg"
+      text: `This temple is being rebuilt by this team of monks. To get to the next level, you have to help them. Click Next to learn how.`,
+      backgroundSrc: "Borb.png"
     }
   },
   {
-    template: PersonLeft,
-    opts: {
+    template: Video,
+    opts: { 
+      text: `It's advised that you take notes; but, do not worry. You can always come back and rewatch the video!`,
       Character: MainPlayer,
-      text: `The first stop on our journey will be Magelang! This city is home to the Borobudur Temple, the world’s biggest Buddhist Temple!`,
-      backgroundSrc: "BorbMap.png",
-      top: true
+      vidSrc: "https://images.bonanzastatic.com/uploads/burnees/7eqg-0001-3554625-1565824062.jpg"
     }
   },
   {
-    template: PersonLeft,
+    template: CodeRender,
     opts: {
-      Character: MainPlayer,
-      text: `Let’s stop by and explore what it’s like!`,
-      backgroundSrc: "BorbMap.png",
-      top: true
+      text: `Take a second to practice your new found skills. Try to make a header (h1) tag and a paragraph tag (p1)`,
     }
   },
   {
-    template: CodeRender
+    template: CodeRender,
+    opts: {
+      text: `The monks need to create a flier to alert the members of the temple to sign up to help. Create the basic skeleton of this html page using what you just learned.`
+    }
   }
 ]

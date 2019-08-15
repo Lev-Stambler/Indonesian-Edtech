@@ -621,7 +621,7 @@ var app = (function () {
     			attr(div0, "class", "charactercontainer svelte-1r4tuws");
     			add_location(div0, file$2, 26, 0, 533);
     			attr(div1, "class", "speechcontainer svelte-1r4tuws");
-    			attr(div1, "style", div1_style_value = ctx.top ? 'top: 8%;' : '');
+    			attr(div1, "style", div1_style_value = ctx.top ? 'top: 5%; left: 25%; right: 15%;' : '');
     			add_location(div1, file$2, 29, 0, 603);
     		},
 
@@ -656,7 +656,7 @@ var app = (function () {
     			if (changed.text) speechbox_changes.text = ctx.text;
     			speechbox.$set(speechbox_changes);
 
-    			if ((!current || changed.top) && div1_style_value !== (div1_style_value = ctx.top ? 'top: 8%;' : '')) {
+    			if ((!current || changed.top) && div1_style_value !== (div1_style_value = ctx.top ? 'top: 5%; left: 25%; right: 15%;' : '')) {
     				attr(div1, "style", div1_style_value);
     			}
     		},
@@ -777,8 +777,58 @@ var app = (function () {
 
     const file$3 = "src/templates/Initial.svelte";
 
+    function get_each_context$1(ctx, list, i) {
+    	const child_ctx = Object.create(ctx);
+    	child_ctx.word = list[i];
+    	child_ctx.index = i;
+    	return child_ctx;
+    }
+
+    // (36:6) {#each header.replace(/[\n\r]/g, '').split(' ') as word, index}
+    function create_each_block$1(ctx) {
+    	var div, t0_value = ctx.word.trim(), t0, t1;
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			t0 = text(t0_value);
+    			t1 = text(" \n        ");
+    			div.dataset.aos = "fade-up";
+    			set_style(div, "display", "inline-block");
+    			div.dataset.aosDelay = ctx.index * 50;
+    			add_location(div, file$3, 36, 8, 786);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+    			append(div, t0);
+    			append(div, t1);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if ((changed.header) && t0_value !== (t0_value = ctx.word.trim())) {
+    				set_data(t0, t0_value);
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+    		}
+    	};
+    }
+
     function create_fragment$3(ctx) {
-    	var img, img_src_value, t0, div1, div0, h1, t1, t2, p, t3;
+    	var img, img_src_value, t0, div1, div0, h1, t1, p, t2;
+
+    	var each_value = ctx.header.replace(/[\n\r]/g, '').split(' ');
+
+    	var each_blocks = [];
+
+    	for (var i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
+    	}
 
     	return {
     		c: function create() {
@@ -787,22 +837,28 @@ var app = (function () {
     			div1 = element("div");
     			div0 = element("div");
     			h1 = element("h1");
-    			t1 = text(ctx.header);
-    			t2 = space();
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t1 = space();
     			p = element("p");
-    			t3 = text(ctx.subtext);
+    			t2 = text(ctx.subtext);
     			attr(img, "src", img_src_value = "static/bckgrnds/" + ctx.backgroundSrc);
     			attr(img, "alt", "");
     			attr(img, "class", "background");
-    			add_location(img, file$3, 31, 0, 579);
-    			attr(h1, "class", "svelte-1y9dvh7");
-    			add_location(h1, file$3, 34, 4, 700);
-    			attr(p, "class", "svelte-1y9dvh7");
-    			add_location(p, file$3, 35, 4, 722);
-    			attr(div0, "class", "transpar svelte-1y9dvh7");
-    			add_location(div0, file$3, 33, 2, 673);
-    			attr(div1, "class", "wrapper svelte-1y9dvh7");
-    			add_location(div1, file$3, 32, 0, 649);
+    			add_location(img, file$3, 31, 0, 582);
+    			attr(h1, "class", "svelte-av3lrp");
+    			add_location(h1, file$3, 34, 4, 703);
+    			p.dataset.aos = "fade-left";
+    			p.dataset.aosDelay = "300";
+    			attr(p, "class", "svelte-av3lrp");
+    			add_location(p, file$3, 41, 4, 945);
+    			attr(div0, "class", "transpar svelte-av3lrp");
+    			add_location(div0, file$3, 33, 2, 676);
+    			attr(div1, "class", "wrapper svelte-av3lrp");
+    			add_location(div1, file$3, 32, 0, 652);
     		},
 
     		l: function claim(nodes) {
@@ -815,10 +871,14 @@ var app = (function () {
     			insert(target, div1, anchor);
     			append(div1, div0);
     			append(div0, h1);
-    			append(h1, t1);
-    			append(div0, t2);
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(h1, null);
+    			}
+
+    			append(div0, t1);
     			append(div0, p);
-    			append(p, t3);
+    			append(p, t2);
     		},
 
     		p: function update(changed, ctx) {
@@ -827,11 +887,28 @@ var app = (function () {
     			}
 
     			if (changed.header) {
-    				set_data(t1, ctx.header);
+    				each_value = ctx.header.replace(/[\n\r]/g, '').split(' ');
+
+    				for (var i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$1(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(changed, child_ctx);
+    					} else {
+    						each_blocks[i] = create_each_block$1(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(h1, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+    				each_blocks.length = each_value.length;
     			}
 
     			if (changed.subtext) {
-    				set_data(t3, ctx.subtext);
+    				set_data(t2, ctx.subtext);
     			}
     		},
 
@@ -844,6 +921,8 @@ var app = (function () {
     				detach(t0);
     				detach(div1);
     			}
+
+    			destroy_each(each_blocks, detaching);
     		}
     	};
     }
@@ -945,49 +1024,84 @@ There are so many people who come to here for opportunities in business and educ
 
     const file$4 = "src/templates/CodeRender.svelte";
 
+    // (88:2) {#if text}
+    function create_if_block(ctx) {
+    	var p, t;
+
+    	return {
+    		c: function create() {
+    			p = element("p");
+    			t = text(ctx.text);
+    			attr(p, "class", "svelte-iu9vyu");
+    			add_location(p, file$4, 88, 4, 1913);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, p, anchor);
+    			append(p, t);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.text) {
+    				set_data(t, ctx.text);
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(p);
+    			}
+    		}
+    	};
+    }
+
     function create_fragment$4(ctx) {
-    	var div6, div2, div0, t1, div1, t3, div5, div3, textarea, t4, div4, dispose;
+    	var div6, t0, div2, div0, t2, div1, t4, div5, div3, textarea, t5, div4, dispose;
+
+    	var if_block = (ctx.text) && create_if_block(ctx);
 
     	return {
     		c: function create() {
     			div6 = element("div");
+    			if (if_block) if_block.c();
+    			t0 = space();
     			div2 = element("div");
     			div0 = element("div");
     			div0.textContent = "Edit your code:";
-    			t1 = space();
+    			t2 = space();
     			div1 = element("div");
     			div1.textContent = "See your code";
-    			t3 = space();
+    			t4 = space();
     			div5 = element("div");
     			div3 = element("div");
     			textarea = element("textarea");
-    			t4 = space();
+    			t5 = space();
     			div4 = element("div");
-    			attr(div0, "class", "svelte-wisvwj");
-    			add_location(div0, file$4, 81, 4, 1802);
-    			attr(div1, "class", "svelte-wisvwj");
-    			add_location(div1, file$4, 82, 4, 1833);
-    			attr(div2, "class", "top-container svelte-wisvwj");
+    			attr(div0, "class", "svelte-iu9vyu");
+    			add_location(div0, file$4, 93, 4, 2031);
+    			attr(div1, "class", "svelte-iu9vyu");
+    			add_location(div1, file$4, 94, 4, 2062);
+    			attr(div2, "class", "top-container svelte-iu9vyu");
     			set_style(div2, "display", "flex");
     			set_style(div2, "color", "white");
     			set_style(div2, "width", "100%");
-    			add_location(div2, file$4, 80, 2, 1720);
+    			add_location(div2, file$4, 92, 2, 1949);
     			attr(textarea, "name", "");
     			attr(textarea, "id", "");
     			attr(textarea, "cols", "400");
     			attr(textarea, "rows", "10");
     			set_style(textarea, "width", "100%");
     			set_style(textarea, "height", "100%");
-    			attr(textarea, "class", "svelte-wisvwj");
-    			add_location(textarea, file$4, 86, 6, 1955);
-    			attr(div3, "class", "editSpot elem textarea-wrapper svelte-wisvwj");
-    			add_location(div3, file$4, 85, 4, 1904);
-    			attr(div4, "class", "renderSpot elem svelte-wisvwj");
-    			add_location(div4, file$4, 88, 4, 2112);
-    			attr(div5, "class", "editor-container svelte-wisvwj");
-    			add_location(div5, file$4, 84, 2, 1869);
-    			attr(div6, "class", "container svelte-wisvwj");
-    			add_location(div6, file$4, 79, 0, 1694);
+    			attr(textarea, "class", "svelte-iu9vyu");
+    			add_location(textarea, file$4, 98, 6, 2184);
+    			attr(div3, "class", "editSpot elem textarea-wrapper svelte-iu9vyu");
+    			add_location(div3, file$4, 97, 4, 2133);
+    			attr(div4, "class", "renderSpot elem svelte-iu9vyu");
+    			add_location(div4, file$4, 100, 4, 2341);
+    			attr(div5, "class", "editor-container svelte-iu9vyu");
+    			add_location(div5, file$4, 96, 2, 2098);
+    			attr(div6, "class", "container svelte-iu9vyu");
+    			add_location(div6, file$4, 86, 0, 1872);
 
     			dispose = [
     				listen(textarea, "input", ctx.textarea_input_handler),
@@ -1001,23 +1115,38 @@ There are so many people who come to here for opportunities in business and educ
 
     		m: function mount(target, anchor) {
     			insert(target, div6, anchor);
+    			if (if_block) if_block.m(div6, null);
+    			append(div6, t0);
     			append(div6, div2);
     			append(div2, div0);
-    			append(div2, t1);
+    			append(div2, t2);
     			append(div2, div1);
-    			append(div6, t3);
+    			append(div6, t4);
     			append(div6, div5);
     			append(div5, div3);
     			append(div3, textarea);
 
     			textarea.value = ctx.htmlRender;
 
-    			append(div5, t4);
+    			append(div5, t5);
     			append(div5, div4);
     			div4.innerHTML = ctx.htmlRender;
     		},
 
     		p: function update(changed, ctx) {
+    			if (ctx.text) {
+    				if (if_block) {
+    					if_block.p(changed, ctx);
+    				} else {
+    					if_block = create_if_block(ctx);
+    					if_block.c();
+    					if_block.m(div6, t0);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
     			if (changed.htmlRender) textarea.value = ctx.htmlRender;
 
     			if (changed.htmlRender) {
@@ -1033,6 +1162,7 @@ There are so many people who come to here for opportunities in business and educ
     				detach(div6);
     			}
 
+    			if (if_block) if_block.d();
     			run_all(dispose);
     		}
     	};
@@ -1061,9 +1191,9 @@ There are so many people who come to here for opportunities in business and educ
       let textareas = document.getElementsByTagName('textarea');
       let count = textareas.length;
 
-      let { htmlRender = "" } = $$props;
+      let { htmlRender = "", text = false } = $$props;
 
-    	const writable_props = ['htmlRender'];
+    	const writable_props = ['htmlRender', 'text'];
     	Object.keys($$props).forEach(key => {
     		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<CodeRender> was created with unknown prop '${key}'`);
     	});
@@ -1075,15 +1205,16 @@ There are so many people who come to here for opportunities in business and educ
 
     	$$self.$set = $$props => {
     		if ('htmlRender' in $$props) $$invalidate('htmlRender', htmlRender = $$props.htmlRender);
+    		if ('text' in $$props) $$invalidate('text', text = $$props.text);
     	};
 
-    	return { htmlRender, textarea_input_handler };
+    	return { htmlRender, text, textarea_input_handler };
     }
 
     class CodeRender extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$4, create_fragment$4, safe_not_equal, ["htmlRender"]);
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, ["htmlRender", "text"]);
     	}
 
     	get htmlRender() {
@@ -1092,6 +1223,39 @@ There are so many people who come to here for opportunities in business and educ
 
     	set htmlRender(value) {
     		throw new Error("<CodeRender>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get text() {
+    		throw new Error("<CodeRender>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set text(value) {
+    		throw new Error("<CodeRender>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src/templates/Video.svelte generated by Svelte v3.6.9 */
+
+    function create_fragment$5(ctx) {
+    	return {
+    		c: noop,
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: noop,
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: noop
+    	};
+    }
+
+    class Video extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, null, create_fragment$5, safe_not_equal, []);
     	}
     }
 
@@ -1105,41 +1269,38 @@ There are so many people who come to here for opportunities in business and educ
       {
         template: PersonLeft,
         opts: { 
-          text: `Hi! My name is Diah, and this is my hometown of Jakarta! 
-Jakarta is the largest city in Indonesia, and also its capital! Over 10 million people live here!
-There are so many people who come to here for opportunities in business and education!`,
+          text: `Welcome to Yogakarta, home to the Borobudur temple. This temple has been around since the 9th century (1200 years ago) and has survived many volcanic eruptions, terrorist bombings and even earthquakes!`,
           Character: MainPlayer,
-          backgroundSrc: "CityNight.jpg"
+          backgroundSrc: "Borb.png"
         }
       },
       {
         template: PersonLeft,
         opts: {
           Character: MainPlayer,
-          text: `I am on a mission to explore other parts of my beautiful country. Why don’t you come along?`,
-          backgroundSrc: "CityNight.jpg"
+          text: `This temple is being rebuilt by this team of monks. To get to the next level, you have to help them. Click Next to learn how.`,
+          backgroundSrc: "Borb.png"
         }
       },
       {
-        template: PersonLeft,
-        opts: {
+        template: Video,
+        opts: { 
+          text: `It's advised that you take notes; but, do not worry. You can always come back and rewatch the video!`,
           Character: MainPlayer,
-          text: `The first stop on our journey will be Magelang! This city is home to the Borobudur Temple, the world’s biggest Buddhist Temple!`,
-          backgroundSrc: "BorbMap.png",
-          top: true
+          vidSrc: "https://images.bonanzastatic.com/uploads/burnees/7eqg-0001-3554625-1565824062.jpg"
         }
       },
       {
-        template: PersonLeft,
+        template: CodeRender,
         opts: {
-          Character: MainPlayer,
-          text: `Let’s stop by and explore what it’s like!`,
-          backgroundSrc: "BorbMap.png",
-          top: true
+          text: `Take a second to practice your new found skills. Try to make a header (h1) tag and a paragraph tag (p1)`,
         }
       },
       {
-        template: CodeRender
+        template: CodeRender,
+        opts: {
+          text: `The monks need to create a flier to alert the members of the temple to sign up to help. Create the basic skeleton of this html page using what you just learned.`
+        }
       }
     ];
 
@@ -1205,7 +1366,7 @@ There are so many people who come to here for opportunities in business and educ
     const file$5 = "src/App.svelte";
 
     // (96:0) {#if mainVis}
-    function create_if_block(ctx) {
+    function create_if_block$1(ctx) {
     	var div, current;
 
     	var currentcomponent_spread_levels = [
@@ -1264,10 +1425,10 @@ There are so many people who come to here for opportunities in business and educ
     	};
     }
 
-    function create_fragment$5(ctx) {
+    function create_fragment$6(ctx) {
     	var div, button0, t0, button1, t1, if_block_anchor, current, dispose;
 
-    	var if_block = (ctx.mainVis) && create_if_block(ctx);
+    	var if_block = (ctx.mainVis) && create_if_block$1(ctx);
 
     	return {
     		c: function create() {
@@ -1312,7 +1473,7 @@ There are so many people who come to here for opportunities in business and educ
     					if_block.p(changed, ctx);
     					transition_in(if_block, 1);
     				} else {
-    					if_block = create_if_block(ctx);
+    					if_block = create_if_block$1(ctx);
     					if_block.c();
     					transition_in(if_block, 1);
     					if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -1445,7 +1606,7 @@ There are so many people who come to here for opportunities in business and educ
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$5, create_fragment$5, safe_not_equal, ["name", "CurrentScreen", "CurrentComponent"]);
+    		init(this, options, instance$5, create_fragment$6, safe_not_equal, ["name", "CurrentScreen", "CurrentComponent"]);
 
     		const { ctx } = this.$$;
     		const props = options.props || {};

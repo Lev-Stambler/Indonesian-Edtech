@@ -14,25 +14,31 @@
     flex-direction: column;
   }
   .transpar {
-    background: rgba(102, 102, 102, 0.52);
+    background: rgb(108, 144, 74);
     padding: 1rem;
     max-width: 70%;
     border-radius: 1rem;
   }
   h1 {
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 4rem;
     padding: 1rem;
   }
   p {
-    color: rgb(243, 243, 243);
+    color: rgb(0, 255, 255);
     font-size: 2rem;
   }
 </style>
 <img src="static/bckgrnds/{backgroundSrc}" alt="" class="background">
 <div class="wrapper">
   <div class="transpar">
-    <h1>{header}</h1>
-    <p>{subtext}</p>
+    <h1>
+      {#each header.replace(/[\n\r]/g, '').split(' ') as word, index}
+        <div data-aos="fade-up" style="display: inline-block;" data-aos-delay={index * 50}>
+          { word.trim() }&nbsp;
+        </div>
+      {/each}
+    </h1>
+    <p data-aos="fade-left" data-aos-delay=300>{subtext}</p>
   </div>
 </div>
