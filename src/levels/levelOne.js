@@ -1,6 +1,7 @@
 import MainPlayer from "../components/players/MainPlayer.svelte"
 import PersonLeft from "../templates/PersonLeft.svelte"
 import Init from "../templates/Initial.svelte"
+import Video from "../templates/Video.svelte"
 
 console.log(PersonLeft)
 
@@ -25,6 +26,13 @@ There are so many people who come to here for opportunities in business and educ
       Character: MainPlayer,
       text: `I am on a mission to explore other parts of my beautiful country. Why don’t you come along?`,
       backgroundSrc: "generic.png"
+    }
+  },
+  {
+    template: Video,
+    opts: { 
+      text: `Before starting the journey, we first need to watch an introductory video on building websites`,
+      url: "https://www.youtube.com/embed/dD2EISBDjWM"
     }
   },
   {

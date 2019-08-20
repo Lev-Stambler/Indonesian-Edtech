@@ -31,7 +31,7 @@ export default [
     template: Video,
     opts: { 
       text: `It's advised that you take notes; but, do not worry. You can always come back and rewatch the video!`,
-      vidSrc: "https://images.bonanzastatic.com/uploads/burnees/7eqg-0001-3554625-1565824062.jpg"
+      url: "https://www.youtube.com/embed/-USAeFpVf_A"
     }
   },
   {
