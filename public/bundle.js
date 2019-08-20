@@ -1024,7 +1024,7 @@ There are so many people who come to here for opportunities in business and educ
 
     const file$4 = "src/templates/CodeRender.svelte";
 
-    // (92:2) {#if text}
+    // (94:2) {#if text}
     function create_if_block(ctx) {
     	var p, t0, t1;
 
@@ -1036,8 +1036,8 @@ There are so many people who come to here for opportunities in business and educ
     			if (if_block) if_block.c();
     			t0 = space();
     			t1 = text(ctx.text);
-    			attr(p, "class", "svelte-asj80w");
-    			add_location(p, file$4, 92, 4, 1986);
+    			attr(p, "class", "svelte-i3d4v6");
+    			add_location(p, file$4, 94, 4, 1936);
     		},
 
     		m: function mount(target, anchor) {
@@ -1076,7 +1076,7 @@ There are so many people who come to here for opportunities in business and educ
     	};
     }
 
-    // (94:4) {#if challengeText}
+    // (96:4) {#if challengeText}
     function create_if_block_1(ctx) {
     	var h3, t;
 
@@ -1084,8 +1084,8 @@ There are so many people who come to here for opportunities in business and educ
     		c: function create() {
     			h3 = element("h3");
     			t = text(ctx.challengeText);
-    			attr(h3, "class", "svelte-asj80w");
-    			add_location(h3, file$4, 94, 7, 2021);
+    			attr(h3, "class", "svelte-i3d4v6");
+    			add_location(h3, file$4, 96, 7, 1971);
     		},
 
     		m: function mount(target, anchor) {
@@ -1129,31 +1129,31 @@ There are so many people who come to here for opportunities in business and educ
     			textarea = element("textarea");
     			t5 = space();
     			div4 = element("div");
-    			attr(div0, "class", "svelte-asj80w");
-    			add_location(div0, file$4, 100, 4, 2170);
-    			attr(div1, "class", "svelte-asj80w");
-    			add_location(div1, file$4, 101, 4, 2201);
-    			attr(div2, "class", "top-container svelte-asj80w");
+    			attr(div0, "class", "svelte-i3d4v6");
+    			add_location(div0, file$4, 102, 4, 2120);
+    			attr(div1, "class", "svelte-i3d4v6");
+    			add_location(div1, file$4, 103, 4, 2151);
+    			attr(div2, "class", "top-container svelte-i3d4v6");
     			set_style(div2, "display", "flex");
     			set_style(div2, "color", "white");
     			set_style(div2, "width", "100%");
-    			add_location(div2, file$4, 99, 2, 2088);
+    			add_location(div2, file$4, 101, 2, 2038);
     			attr(textarea, "name", "");
     			attr(textarea, "id", "");
     			attr(textarea, "cols", "400");
     			attr(textarea, "rows", "10");
     			set_style(textarea, "width", "100%");
     			set_style(textarea, "height", "100%");
-    			attr(textarea, "class", "svelte-asj80w");
-    			add_location(textarea, file$4, 105, 6, 2323);
-    			attr(div3, "class", "editSpot elem textarea-wrapper svelte-asj80w");
-    			add_location(div3, file$4, 104, 4, 2272);
-    			attr(div4, "class", "renderSpot elem svelte-asj80w");
-    			add_location(div4, file$4, 107, 4, 2480);
-    			attr(div5, "class", "editor-container svelte-asj80w");
-    			add_location(div5, file$4, 103, 2, 2237);
-    			attr(div6, "class", "container svelte-asj80w");
-    			add_location(div6, file$4, 90, 0, 1945);
+    			attr(textarea, "class", "svelte-i3d4v6");
+    			add_location(textarea, file$4, 107, 6, 2273);
+    			attr(div3, "class", "editSpot elem textarea-wrapper svelte-i3d4v6");
+    			add_location(div3, file$4, 106, 4, 2222);
+    			attr(div4, "class", "renderSpot elem svelte-i3d4v6");
+    			add_location(div4, file$4, 109, 4, 2430);
+    			attr(div5, "class", "editor-container svelte-i3d4v6");
+    			add_location(div5, file$4, 105, 2, 2187);
+    			attr(div6, "class", "container svelte-i3d4v6");
+    			add_location(div6, file$4, 92, 0, 1895);
 
     			dispose = [
     				listen(textarea, "input", ctx.textarea_input_handler),

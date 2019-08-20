@@ -27,40 +27,42 @@
   export let challengeText = false
 </script>
 <style>
-  .container {
-    padding: 1rem;
-    padding-top: 5rem;
-    width: 100%;
-    height: 100%;
-    background: rgb(59, 59, 59);
-  }
+.container {
+  padding: 1rem;
+  padding-top: 2rem;
+  width: 100%;
+  height: 100%;
+  background: rgb(59, 59, 59);
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
 
-  .editor-container {
-    padding: 1rem;
-    display: flex;
-    width: 100%;
-    height: 80vh;
-    overflow: auto;
-  }
-  .elem {
-    width: 47%;
-    margin: 0.5rem;
-  }
-  .elem.renderSpot {
-    background: white;
-    border: 1px solid black;
-    /* padding: 1rem; */
-  }
-  .top-container {
-    display: flex;
-    padding-left: 2rem;
-    width: 100%;
-    justify-content: space-between;
-  }
-  .top-container div {
-    width: 50%;
-  }
-  textarea {
+.editor-container {
+  padding: 1rem;
+  display: flex;
+  width: 100%;
+  height: 80vh;
+  overflow: auto;
+}
+.elem {
+  width: 47%;
+  margin: 0.5rem;
+}
+.elem.renderSpot {
+  background: white;
+  border: 1px solid black;
+  /* padding: 1rem; */
+}
+.top-container {
+  display: flex;
+  padding-left: 2rem;
+  width: 100%;
+  justify-content: space-between;
+}
+.top-container div {
+  width: 50%;
+}
+textarea {
   background: url(http://i.imgur.com/2cOaJ.png);
   background-attachment: local;
   background-repeat: no-repeat;
@@ -71,22 +73,22 @@
   line-height: 16px;
 }
 
-  .textarea-wrapper {
-    display: inline-block;
-    background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
-    background-size: 100% 32px;
-    background-position: left 10px;
-  }
-  p {
-    background: rgb(202, 248, 255);
-    color: rgb(65, 65, 65);
-    padding: 1rem;
-    border-radius: 0.4rem;
-    display: inline-block;
-  }
-  h3 {
-    color: rgb(0, 179, 0);
-  }
+.textarea-wrapper {
+  display: inline-block;
+  background-image: linear-gradient(#F1F1F1 50%, #F9F9F9 50%);
+  background-size: 100% 32px;
+  background-position: left 10px;
+}
+p {
+  background: rgb(202, 248, 255);
+  color: rgb(65, 65, 65);
+  padding: 1rem;
+  border-radius: 0.4rem;
+  display: inline-block;
+}
+h3 {
+  color: rgb(0, 179, 0);
+}
 </style>
 <div class="container">
   {#if text}
