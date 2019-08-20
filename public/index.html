@@ -23,6 +23,9 @@
 <body>
 	<script>
 			AOS.init();
+			if (document.fullscreenEnabled) {
+				document.documentElement.requestFullscreen()
+			}
 	</script>
 </body>
 </html>
